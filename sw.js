@@ -1,4 +1,4 @@
-// === VERSION (from query param) ===
+// Read VERSION from URL param
 const url = new URL(self.registration.scope);
 const VERSION = url.searchParams.get('v') || 'v0.0.0';
 const CACHE = `pwa-${VERSION}`;
