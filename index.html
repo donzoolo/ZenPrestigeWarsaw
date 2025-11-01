@@ -120,6 +120,7 @@
   let allPanels   = [];
   let currentTheme = localStorage.getItem('theme') || 'light';
   let newWorker;               // will be set when a new SW is installing
+  let isUpdating = false;
 
   /* ---------- TRANSLATIONS ---------- */
   const translations = {
@@ -235,12 +236,15 @@ async function loadVersion() {
     navigator.serviceWorker.register('sw.js?v=' + Date.now())
       .then(reg => {
         console.log('SW registered', reg);
+
+        // Check for updates
         reg.update();
 
+        // Detect new version
         reg.onupdatefound = () => {
           newWorker = reg.installing;
           newWorker.onstatechange = () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller && !isUpdating) {
               showUpdateUI();
             }
           };
@@ -249,10 +253,12 @@ async function loadVersion() {
       .catch(err => console.error('SW failed:', err));
   });
 
-  // === RELOAD ONLY AFTER NEW SW IS ACTIVE ===
+  // === RELOAD ONLY ONCE, AFTER USER CLICKS ===
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    console.log('New SW activated — reloading...');
-    window.location.reload();
+    if (isUpdating) {
+      console.log('Update applied — reloading once');
+      window.location.reload();
+    }
   });
 }
 
@@ -262,7 +268,8 @@ function showUpdateUI() {
 }
 
 function updatePWA() {
-  if (newWorker) {
+  if (newWorker && !isUpdating) {
+    isUpdating = true;  // Prevent double reload
     newWorker.postMessage({ action: 'skipWaiting' });
   }
 }
