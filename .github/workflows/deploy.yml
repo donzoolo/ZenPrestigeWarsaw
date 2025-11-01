@@ -1,19 +1,45 @@
-# .github/workflows/deploy.yml
 name: Deploy PWA
-on: [push]
+
+on:
+  push:
+    branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write      # For tagging
+      pages: write         # For GitHub Pages
+      id-token: write      # For deploy
+
     steps:
       - uses: actions/checkout@v4
-      - name: Get tag
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag
         id: tag
-        run: echo "tag=v$(git tag --sort=-version:refname | head -1 | cut -c2- || echo 0.0.1)" >> $GITHUB_OUTPUT
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          NEW_TAG=$(echo "$LATEST" | awk -F. '{$NF+=1; OFS="."}1')
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
       - name: Inject version
         run: |
-          sed -i "s/VERSION = \".*\"/VERSION = \"${{ steps.tag.outputs.tag }}\"/" index.html
-          sed -i "s/CACHE = '.*'/CACHE = 'pwa-${{ steps.tag.outputs.tag }}'/" sw.js
-      - uses: peaceiris/actions-gh-pages@v3
+          sed -i "s/const VERSION = \".*\"/const VERSION = \"${{ steps.tag.outputs.new_tag }}\"/" index.html
+          sed -i "s/const CACHE = '.*'/const CACHE = 'pwa-${{ steps.tag.outputs.new_tag }}'/" sw.js
+
+      - name: Create tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag "${{ steps.tag.outputs.new_tag }}"
+          git push origin "${{ steps.tag.outputs.new_tag }}"
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
+          force_orphan: true
+          cname: zenprestigewarsaw.pl
