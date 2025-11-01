@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apartment-guide-v2'; // ← BUMP VERSION
+const CACHE_NAME = 'apartment-guide-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -10,7 +10,6 @@ const urlsToCache = [
   'https://flagcdn.com/de.svg'
 ];
 
-// Install: Cache everything
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -19,7 +18,6 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate: Delete old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -34,10 +32,8 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch: Serve from cache, but update in background
 self.addEventListener('fetch', event => {
   if (event.request.url.includes('content.json')) {
-    // Always fetch fresh content.json
     event.respondWith(
       fetch(event.request).then(response => {
         return caches.open(CACHE_NAME).then(cache => {
@@ -47,7 +43,6 @@ self.addEventListener('fetch', event => {
       }).catch(() => caches.match(event.request))
     );
   } else {
-    // Cache-first for everything else
     event.respondWith(
       caches.match(event.request)
         .then(response => response || fetch(event.request))
@@ -55,9 +50,8 @@ self.addEventListener('fetch', event => {
   }
 });
 
-// Auto-update when new version detected
 self.addEventListener('message', event => {
-  if (event.data === 'skipWaiting') {
+  if (event.data && event.data.action === 'skipWaiting') {
     self.skipWaiting();
   }
 });
