@@ -161,7 +161,7 @@
 	// === AUTO-VERSION FROM GITHUB ===
 	async function loadVersion() {
 	  try {
-		const res = await fetch('https://api.github.com/repos/YOURUSERNAME/your-apartment-guide/releases/latest');
+		const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/releases/latest');
 		if (res.ok) {
 		  const data = await res.json();
 		  const tag = data.tag_name || 'v1.0.0';
