@@ -10,25 +10,22 @@
   <meta name="theme-color" content="#8B7E6A">
   <link rel="icon" href="assets/icons/icon-192.png">
 
-  <!-- CSP -->
+  <!-- CSP: Allow CDN for icons + self -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self';
-    style-src 'self' 'unsafe-inline';
+    script-src 'self' https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
     img-src 'self' data:;
     connect-src 'self';
+    font-src 'self' https://cdn.jsdelivr.net;
   ">
 
   <!-- Preload -->
   <link rel="preload" href="css/style.css" as="style">
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" 
-        integrity="sha384-..." crossorigin="anonymous">
-
-  <!-- Version (injected by GitHub Actions) -->
-  <script src="version.js"></script>
+  <!-- Tabler Icons (Local or CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 </head>
 <body>
 
@@ -52,7 +49,7 @@
   </header>
 
   <div class="search-bar">
-    <input type="text" placeholder="Search instructions..." aria-label="Search instructions" id="search">
+    <input type="text" placeholder="Search..." aria-label="Search" id="search">
   </div>
 
   <main id="panels-container" role="region" aria-live="polite"></main>
@@ -73,202 +70,8 @@
   <img src="" alt="" id="lightbox-img">
 </div>
 
-<script>
-  // === VERSION (injected by deploy.yml) ===
-  const VERSION = VERSION;
-
-  // === DOM ===
-  const panelsContainer = document.getElementById('panels-container');
-  const pageTitle = document.getElementById('page-title');
-  const searchInput = document.getElementById('search');
-  const noResults = document.getElementById('no-results');
-  const flags = document.querySelectorAll('.flag-btn');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const themeToggle = document.getElementById('theme-toggle');
-  const contactTitle = document.getElementById('contact-title');
-  const contactText = document.getElementById('contact-text');
-
-  // === STATE ===
-  let content = {};
-  let currentLang = 'en';
-  let allPanels = [];
-  let currentTheme = localStorage.getItem('theme') || 'light';
-  let newWorker, isUpdating = false;
-
-  // === TRANSLATIONS ===
-  const translations = {
-    title: { en: "Welcome", pl: "Witamy", de: "Willkommen" },
-    searchPlaceholder: { en: "Search instructions…", pl: "Szukaj instrukcji…", de: "Anweisungen suchen…" },
-    noResults: { en: "No results found.", pl: "Brak wyników.", de: "Keine Ergebnisse." },
-    contact: { en: "Contact Us", pl: "Kontakt", de: "Kontakt" },
-    contactText: { en: "Wi-Fi and check-in details provided at arrival.", pl: "Dane Wi-Fi i meldunek przy przyjeździe.", de: "WLAN und Check-in bei Ankunft." }
-  };
-
-  // === LOAD CONTENT ===
-  async function loadContent() {
-    try {
-      const res = await fetch(`content.json?v=${VERSION}`);
-      if (!res.ok) throw new Error();
-      content = await res.json();
-    } catch {
-      const cached = await caches.match('content.json');
-      content = cached ? await cached.json() : { en: [] };
-    }
-    allPanels = content[currentLang] || content.en || [];
-    renderPanels(allPanels);
-    updateUI();
-  }
-
-  function updateUI() {
-    pageTitle.textContent = content.titles?.[currentLang] || translations.title[currentLang];
-    searchInput.placeholder = translations.searchPlaceholder[currentLang];
-    noResults.textContent = translations.noResults[currentLang];
-    contactTitle.textContent = translations.contact[currentLang];
-    contactText.textContent = translations.contactText[currentLang];
-  }
-
-  // === RENDER PANELS ===
-  function renderPanels(list) {
-    panelsContainer.innerHTML = '';
-    if (!list.length) { noResults.style.display = 'block'; return; }
-    noResults.style.display = 'none';
-
-    list.forEach((p, i) => {
-      const div = document.createElement('div');
-      div.className = 'panel visible';
-      div.setAttribute('role', 'region');
-      div.setAttribute('aria-labelledby', `panel-title-${i}`);
-      div.innerHTML = `
-        <div class="panel-title" id="panel-title-${i}" tabindex="0" role="button" aria-expanded="false">
-          ${p.title}
-        </div>
-        <div class="panel-content" aria-hidden="true">
-          <div class="panel-text">${p.html}</div>
-        </div>
-      `;
-      panelsContainer.appendChild(div);
-
-      const title = div.querySelector('.panel-title');
-      const content = div.querySelector('.panel-content');
-
-      const toggle = () => {
-        const isActive = div.classList.toggle('active');
-        title.setAttribute('aria-expanded', isActive);
-        content.setAttribute('aria-hidden', !isActive);
-        savePanelState();
-      };
-
-      title.addEventListener('click', toggle);
-      title.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-      });
-    });
-
-    loadPanelState();
-  }
-
-  // === PANEL STATE PERSISTENCE ===
-  function savePanelState() {
-    const state = Array.from(document.querySelectorAll('.panel')).map(p => p.classList.contains('active'));
-    localStorage.setItem('panelState', JSON.stringify(state));
-  }
-
-  function loadPanelState() {
-    const state = JSON.parse(localStorage.getItem('panelState') || '[]');
-    document.querySelectorAll('.panel').forEach((p, i) => {
-      if (state[i]) {
-        p.classList.add('active');
-        p.querySelector('.panel-title').setAttribute('aria-expanded', 'true');
-        p.querySelector('.panel-content').setAttribute('aria-hidden', 'false');
-      }
-    });
-  }
-
-  // === SEARCH & LANG ===
-  function filterPanels(q) {
-    if (!q.trim()) return renderPanels(allPanels);
-    const lower = q.toLowerCase();
-    const matches = allPanels.filter(p =>
-      p.title.toLowerCase().includes(lower) || p.html.toLowerCase().includes(lower)
-    );
-    renderPanels(matches);
-  }
-
-  flags.forEach(f => f.addEventListener('click', () => {
-    currentLang = f.dataset.lang;
-    flags.forEach(x => x.setAttribute('aria-selected', 'false'));
-    f.setAttribute('aria-selected', 'true');
-    allPanels = content[currentLang] || content.en;
-    updateUI();
-    filterPanels(searchInput.value);
-  }));
-
-  searchInput.addEventListener('input', () => filterPanels(searchInput.value));
-  lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
-
-  // === THEME ===
-  function applyTheme() {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.innerHTML = currentTheme === 'light'
-      ? '<i class="ti ti-moon"></i>'
-      : '<i class="ti ti-sun"></i>';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', currentTheme);
-    applyTheme();
-  });
-
-  // === SERVICE WORKER ===
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(`sw.js?v=${VERSION}`)
-      .then(reg => {
-        console.log('SW registered', reg);
-        reg.update();
-
-        reg.onupdatefound = () => {
-          newWorker = reg.installing;
-          newWorker.onstatechange = () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller && !isUpdating) {
-              document.getElementById('update-banner').style.display = 'block';
-            }
-          };
-        };
-      })
-      .catch(err => console.error('SW failed:', err));
-  }
-
-  function updatePWA() {
-    if (newWorker && !isUpdating) {
-      isUpdating = true;
-      const banner = document.getElementById('update-banner');
-      if (banner) banner.style.display = 'none';
-      newWorker.postMessage({ action: 'skipWaiting' });
-    }
-  }
-
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (isUpdating) {
-      console.log('Update applied — reloading');
-      window.location.reload();
-    }
-  });
-
-  // === LIGHTBOX IMAGE FALLBACK ===
-  panelsContainer.addEventListener('click', e => {
-    const img = e.target.closest('.thumb');
-    if (img) {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt || 'Enlarged image';
-      lightbox.classList.add('active');
-    }
-  });
-
-  // === INIT ===
-  applyTheme();
-  loadContent();
-</script>
+<!-- Version + App Logic (External) -->
+<script src="version.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
