@@ -24,12 +24,13 @@ jobs:
         run: |
           VERSION="v$(date +'%Y%m%d.%H%M')"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "const VERSION = \"$VERSION\";" > version.js
+          echo "Created version.js: $(cat version.js)"
 
-      - name: Inject version
+      - name: Inject version into index.html
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           sed -i "s/{{VERSION}}/$VERSION/g" index.html
-          echo "Service worker version: $VERSION"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
