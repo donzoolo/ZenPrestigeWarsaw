@@ -1,6 +1,3 @@
-// === VERSION (from version.js) ===
-const VERSION = window.VERSION || "v0.0.0";
-
 // === DOM ===
 const panelsContainer = document.getElementById('panels-container');
 const pageTitle = document.getElementById('page-title');
@@ -12,6 +9,7 @@ const lightboxImg = document.getElementById('lightbox-img');
 const themeToggle = document.getElementById('theme-toggle');
 const contactTitle = document.getElementById('contact-title');
 const contactText = document.getElementById('contact-text');
+const updateBtn = document.getElementById('update-btn');
 
 // === STATE ===
 let content = {};
@@ -19,6 +17,9 @@ let currentLang = 'en';
 let allPanels = [];
 let currentTheme = localStorage.getItem('theme') || 'light';
 let newWorker, isUpdating = false;
+
+// === VERSION (Injected by GitHub Actions) ===
+const VERSION = window.VERSION || 'v0.0.0';
 
 // === TRANSLATIONS ===
 const translations = {
@@ -153,13 +154,13 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function updatePWA() {
+updateBtn.addEventListener('click', () => {
   if (newWorker && !isUpdating) {
     isUpdating = true;
     document.getElementById('update-banner').style.display = 'none';
     newWorker.postMessage({ action: 'skipWaiting' });
   }
-}
+});
 
 navigator.serviceWorker.addEventListener('controllerchange', () => {
   if (isUpdating) window.location.reload();

@@ -1,4 +1,3 @@
-// Read VERSION from URL param
 const url = new URL(self.registration.scope);
 const VERSION = url.searchParams.get('v') || 'v0.0.0';
 const CACHE = `pwa-${VERSION}`;
@@ -6,18 +5,18 @@ const CACHE = `pwa-${VERSION}`;
 const ASSETS = [
   '/', '/index.html', '/css/style.css', '/js/app.js', '/manifest.json',
   '/assets/flags/en.svg', '/assets/flags/pl.svg', '/assets/flags/de.svg',
-  '/assets/icons/icon-192.png', '/assets/icons/icon-512.png'
+  '/assets/icons/icon-192.png', '/assets/icons/icon/icons/icon-512.png'
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
-});
+self.addEventListener('install', e => e.waitUntil(
+  caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+));
 
-self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(keys => Promise.all(
+self.addEventListener('activate', e => e.waitUntil(
+  caches.keys().then(keys => Promise.all(
     keys.filter(k => k !== CACHE).map(k => caches.delete(k))
-  )).then(() => self.clients.claim()));
-});
+  )).then(() => self.clients.claim())
+));
 
 self.addEventListener('fetch', e => {
   const req = e.request;
