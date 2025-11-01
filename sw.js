@@ -1,58 +1,44 @@
-const CACHE_NAME = 'apartment-guide-v2';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/content.json',
-  '/manifest.json',
-  'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css',
-  'https://flagcdn.com/gb.svg',
-  'https://flagcdn.com/pl.svg',
-  'https://flagcdn.com/de.svg'
+const CACHE = 'pwa-v0.0.6'; // Auto-injected
+const ASSETS = [
+  '/', '/index.html', '/css/style.css', '/manifest.json',
+  '/assets/flags/en.svg', '/assets/flags/pl.svg', '/assets/flags/de.svg',
+  '/assets/icons/icon-192.png', '/assets/icons/icon-512.png'
 ];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(
+    keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+  )).then(() => self.clients.claim()));
+});
+
+self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+
+  // Network-first for HTML + JSON
+  if (url.pathname.endsWith('.html') || url.pathname.endsWith('.json')) {
+    e.respondWith(
+      fetch(e.request).then(r => caches.open(CACHE).then(c => { c.put(e.request, r.clone()); return r; }))
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Stale-while-revalidate for assets
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      const network = fetch(e.request).then(r => {
+        caches.open(CACHE).then(c => c.put(e.request, r.clone()));
+        return r;
+      });
+      return cached || network;
+    })
   );
 });
 
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(name => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', event => {
-  if (event.request.url.includes('content.json')) {
-    event.respondWith(
-      fetch(event.request).then(response => {
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, response.clone());
-          return response;
-        });
-      }).catch(() => caches.match(event.request))
-    );
-  } else {
-    event.respondWith(
-      caches.match(event.request)
-        .then(response => response || fetch(event.request))
-    );
-  }
-});
-
-self.addEventListener('message', event => {
-  if (event.data && event.data.action === 'skipWaiting') {
-    console.log('SW: skipWaiting received');
-    self.skipWaiting();
-  }
+self.addEventListener('message', e => {
+  if (e.data?.action === 'skipWaiting') self.skipWaiting();
 });

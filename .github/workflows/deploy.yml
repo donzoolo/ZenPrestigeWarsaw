@@ -1,0 +1,19 @@
+# .github/workflows/deploy.yml
+name: Deploy PWA
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get tag
+        id: tag
+        run: echo "tag=v$(git tag --sort=-version:refname | head -1 | cut -c2- || echo 0.0.1)" >> $GITHUB_OUTPUT
+      - name: Inject version
+        run: |
+          sed -i "s/VERSION = \".*\"/VERSION = \"${{ steps.tag.outputs.tag }}\"/" index.html
+          sed -i "s/CACHE = '.*'/CACHE = 'pwa-${{ steps.tag.outputs.tag }}'/" sw.js
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
