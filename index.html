@@ -3,73 +3,283 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title data-key="title">Apartment Guide</title>
+  <title>Apartment Guide</title>
 
-  <!-- PWA -->
+  <!-- PWA Meta -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#8B7E6A">
-  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>House</text></svg>">
 
-  <!-- CSP: No inline scripts -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-    connect-src 'self';
-    font-src 'self';
-  ">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 
-  <!-- Preload -->
-  <link rel="preload" href="css/style.css" as="style">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* (same CSS as before – omitted for brevity) */
+    :root{--bg:#FAF9F7;--container-bg:#FFF;--text:#3C3C3C;--accent:#8B7E6A;--light:#F5F0E8;--border:#E8E3DC;--radius:12px;--font:'Inter',system-ui,-apple-system,sans-serif;--shadow:0 4px 20px rgba(0,0,0,.05)}
+    [data-theme=dark]{--bg:#1A1A1A;--container-bg:#222;--text:#E0E0E0;--accent:#BFAF8F;--light:#2A2A2A;--border:#333;--shadow:0 4px 20px rgba(0,0,0,.3)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;padding:1rem;min-height:100vh;transition:background .3s}
+    .container{max-width:900px;margin:2rem auto;background:var(--container-bg);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative}
+    header{padding:2rem 2rem 1.5rem;text-align:center;border-bottom:1px solid var(--border);background:var(--light);position:relative}
+    .theme-toggle{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.5rem;cursor:pointer;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s}
+    .theme-toggle:hover{background:rgba(139,126,106,.15)}
+    [data-theme=dark] .theme-toggle:hover{background:rgba(191,175,143,.2)}
+    h1{font-size:1.8rem;font-weight:500;color:var(--accent);margin-bottom:.5rem}
+    .lang-switcher{display:flex;justify-content:center;gap:.75rem;margin-top:1rem}
+    .flag{width:36px;height:24px;cursor:pointer;border-radius:6px;object-fit:cover;border:1px solid var(--border);transition:transform .2s,border .2s}
+    .flag:hover{transform:scale(1.1)}
+    .flag.active{border:2px solid var(--accent)}
+    .search-bar{padding:1.5rem;border-bottom:1px solid var(--border);background:var(--container-bg)}
+    .search-input{width:100%;padding:.75rem 1rem;font-size:1rem;border:1px solid var(--border);border-radius:8px;background:var(--light);color:var(--text);outline:none;transition:border .2s,background .3s}
+    .search-input::placeholder{color:#888;opacity:1}
+    .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,126,106,.15)}
+    [data-theme=dark] .search-input:focus{box-shadow:0 0 0 3px rgba(191,175,143,.2)}
+    .panel{border-bottom:1px solid var(--border);display:none}
+    .panel.visible{display:block}
+    .panel:last-child{border-bottom:none}
+    .panel-title{padding:1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:500;font-size:1.1rem;transition:background .2s}
+    .panel-title:hover{background:var(--light)}
+    .panel-title::after{content:"+";font-size:1.5rem;color:var(--accent)}
+    .panel.active .panel-title::after{content:"−"}
+    .panel-content{padding:0 1.5rem;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;background:var(--container-bg)}
+    .panel.active .panel-content{padding:1.5rem;max-height:2000px}
+    .panel-text{margin-bottom:1rem;font-size:.95rem}
+    .image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;margin-top:1rem}
+    .thumb{width:100%;height:90px;object-fit:cover;border-radius:8px;cursor:zoom-in;border:1px solid var(--border);transition:transform .2s}
+    .thumb:hover{transform:scale(1.03)}
+    .lightbox{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.9);justify-content:center;align-items:center;padding:1rem}
+    .lightbox img{max-width:90%;max-height:90vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .lightbox.active{display:flex}
+    .no-results{padding:2rem;text-align:center;color:#888;font-style:italic;display:none}
+    .contact-section{padding:2.5rem 1.5rem;background:var(--light);border-top:3px solid var(--accent);text-align:center;font-size:1rem;line-height:1.8;margin-top:1rem}
+    .contact-section h3{font-size:1.6rem;font-weight:600;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .contact-section h3 i{font-size:1.8rem}
+    .contact-item{margin:1rem 0;display:flex;align-items:center;justify-content:center;gap:.75rem;flex-wrap:wrap}
+    .contact-item i{font-size:1.4rem;color:var(--accent)}
+    .contact-item a{color:var(--accent);text-decoration:none;font-weight:500;border-bottom:1px dashed var(--accent);transition:all .2s}
+    .contact-item a:hover{color:var(--text);border-bottom:1px solid var(--accent)}
+    [data-theme=dark] .contact-section{background:rgba(42,42,42,.8)}
+    #update-banner{display:none;background:#8B7E6A;color:#fff;padding:1rem;text-align:center;font-size:.9rem;position:sticky;bottom:0;z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,.1)}
+    #update-banner button{background:#fff;color:#8B7E6A;border:none;padding:.5rem 1rem;margin-left:.5rem;border-radius:4px;cursor:pointer;font-weight:500}
+    @media(max-width:600px){.container{margin:1rem}h1{font-size:1.5rem}.panel-title{font-size:1rem;padding:1.2rem}.search-bar{padding:1rem}.theme-toggle{top:.75rem;right:.75rem}.contact-section h3{font-size:1.4rem}.contact-section{padding:2rem 1rem}}
+  </style>
 </head>
 <body>
 
 <div class="container">
   <header>
-    <button class="theme-toggle" aria-label="Toggle dark mode" id="theme-toggle">
-      <i class="ti ti-moon"></i>
-    </button>
-    <h1 id="page-title">Welcome</h1>
-    <div class="lang-switcher" role="tablist">
-      <button role="tab" aria-selected="true" data-lang="en" class="flag-btn">
-        <img src="assets/flags/en.svg" alt="English" class="flag">
-      </button>
-      <button role="tab" data-lang="pl" class="flag-btn">
-        <img src="assets/flags/pl.svg" alt="Polski" class="flag">
-      </button>
-      <button role="tab" data-lang="de" class="flag-btn">
-        <img src="assets/flags/de.svg" alt="Deutsch" class="flag">
-      </button>
+    <button class="theme-toggle" id="theme-toggle"><i class="ti ti-moon"></i></button>
+    <h1 id="page-title">Welcome to Your Apartment</h1>
+    <div class="lang-switcher">
+      <img src="https://flagcdn.com/gb.svg" alt="EN" class="flag active" data-lang="en">
+      <img src="https://flagcdn.com/pl.svg" alt="PL" class="flag" data-lang="pl">
+      <img src="https://flagcdn.com/de.svg" alt="DE" class="flag" data-lang="de">
     </div>
   </header>
 
   <div class="search-bar">
-    <input type="text" placeholder="Search..." aria-label="Search" id="search">
+    <input type="text" class="search-input" id="search" autocomplete="off">
   </div>
 
-  <main id="panels-container" role="region" aria-live="polite"></main>
+  <main id="panels-container"><div class="loading">Loading guide…</div></main>
 
-  <div class="no-results" id="no-results">No results found.</div>
+  <div class="no-results" id="no-results"></div>
 
-  <div class="contact-section">
-    <h3><i class="ti ti-message-circle"></i> <span id="contact-title">Contact Us</span></h3>
-    <p id="contact-text">Wi-Fi and check-in details provided at arrival.</p>
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact-section">
+    <h3 id="contact-title"><i class="ti ti-message-circle"></i> Contact Us</h3>
+    <div class="contact-item" id="contact-issues"><i class="ti ti-alert-triangle"></i><span></span></div>
+    <div class="contact-item" id="contact-suggestions"><i class="ti ti-bulb"></i><span></span></div>
   </div>
 
-  <div id="update-banner" role="alert" style="display:none;">
-    New version available! <button id="update-btn">Update Now</button>
+  <!-- UPDATE BANNER -->
+  <div id="update-banner">
+    New version available! <button onclick="updatePWA()">Update Now</button>
   </div>
 </div>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <img src="" alt="" id="lightbox-img">
-</div>
+<div class="lightbox" id="lightbox"><img src="" alt="Enlarged" id="lightbox-img"></div>
 
 <script>
-  const VERSION = "{{VERSION}}";  <!-- Replaced by GitHub Actions -->
+  /* ---------- DOM ---------- */
+  const panelsContainer = document.getElementById('panels-container');
+  const pageTitle       = document.getElementById('page-title');
+  const searchInput     = document.getElementById('search');
+  const noResults       = document.getElementById('no-results');
+  const flags           = document.querySelectorAll('.flag');
+  const lightbox        = document.getElementById('lightbox');
+  const lightboxImg     = document.getElementById('lightbox-img');
+  const themeToggle     = document.getElementById('theme-toggle');
+  const contactIssues   = document.getElementById('contact-issues').querySelector('span');
+  const contactSuggestions = document.getElementById('contact-suggestions').querySelector('span');
+  const contactTitle    = document.getElementById('contact-title');
+
+  /* ---------- STATE ---------- */
+  let content = {};
+  let currentLang = 'en';
+  let allPanels   = [];
+  let currentTheme = localStorage.getItem('theme') || 'light';
+  let newWorker;               // will be set when a new SW is installing
+  let isUpdating = false;
+
+  /* ---------- TRANSLATIONS ---------- */
+  const translations = {
+    searchPlaceholder: {en:"Search instructions…",pl:"Szukaj instrukcji…",de:"Anweisungen suchen…"},
+    contactTitle:      {en:"Contact Us",pl:"Skontaktuj się z nami",de:"Kontaktieren Sie uns"},
+    contactIssues: {
+      en:"For any issues with the apartment, please contact: <strong>Jan Kowalski</strong> at <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> or phone <a href='tel:+48123456789'>+48 123 456 789</a>",
+      pl:"W razie problemów z apartamentem: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> lub <a href='tel:+48123456789'>+48 123 456 789</a>",
+      de:"Bei Problemen mit der Wohnung: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> oder <a href='tel:+48123456789'>+48 123 456 789</a>"
+    },
+    contactSuggestions: {
+      en:"For suggestions about the apartment or this guide, email us at <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      pl:"Masz sugestie? Napisz na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      de:"Vorschläge? Schreiben Sie an <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>"
+    },
+    noResults: {en:"No instructions found. Try another keyword.",pl:"Nie znaleziono instrukcji. Spróbuj innego słowa.",de:"Keine Anweisungen gefunden. Versuchen Sie ein anderes Wort."}
+  };
+
+  /* ---------- LOAD CONTENT ---------- */
+  async function loadContent() {
+    try {
+      const res = await fetch('content.json?v=' + Date.now());
+      if (!res.ok) throw new Error('Not found');
+      content = await res.json();
+    } catch (err) {
+      console.warn('Offline / error:', err);
+      const cache = await caches.open('apartment-guide-v2');
+      const cached = await cache.match('content.json');
+      if (cached) content = await cached.json();
+      else {
+        panelsContainer.innerHTML = `<div style="color:red;padding:2rem;">No cached content. Connect to internet first.</div>`;
+        return;
+      }
+    }
+    allPanels = content[currentLang] || content.en || [];
+    renderPanels(allPanels);
+    updateUI();
+  }
+	// === AUTO-VERSION FROM GITHUB ===
+async function loadVersion() {
+  try {
+    const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/tags?per_page=1');
+    if (!res.ok) throw new Error('API failed');
+
+    const tags = await res.json();
+    if (!tags || tags.length === 0) throw new Error('No tags');
+
+    const latest = tags[0];
+    const version = latest.name;
+    const date = new Date(latest.commit?.committer?.date || Date.now())
+      .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+    console.log('Version:', version, '| Updated:', date);
+  } catch (err) {
+    console.warn('Version fetch failed (offline/no tags):', err.message);
+  }
+}
+  function updateUI() {
+    pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
+    searchInput.placeholder = translations.searchPlaceholder[currentLang];
+    noResults.textContent   = translations.noResults[currentLang];
+    contactTitle.innerHTML  = `<i class="ti ti-message-circle"></i> ${translations.contactTitle[currentLang]}`;
+    contactIssues.innerHTML = translations.contactIssues[currentLang];
+    contactSuggestions.innerHTML = translations.contactSuggestions[currentLang];
+  }
+
+  /* ---------- RENDER PANELS ---------- */
+  function renderPanels(list) {
+    panelsContainer.innerHTML = '';
+    if (!list.length) { noResults.style.display = 'block'; return; }
+    noResults.style.display = 'none';
+    list.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'panel visible';
+      div.innerHTML = `<div class="panel-title">${p.title}</div>
+                       <div class="panel-content"><div class="panel-text">${p.html}</div></div>`;
+      panelsContainer.appendChild(div);
+      div.querySelector('.panel-title').addEventListener('click',()=>div.classList.toggle('active'));
+      div.querySelectorAll('.thumb').forEach(img=>img.addEventListener('click',()=>{
+        lightboxImg.src = img.src; lightbox.classList.add('active');
+      }));
+    });
+  }
+
+  /* ---------- SEARCH & LANG ---------- */
+  function filterPanels(q) {
+    if (!q.trim()) return renderPanels(allPanels);
+    const lower = q.toLowerCase();
+    const matches = allPanels.filter(p=>p.title.toLowerCase().includes(lower)||p.html.toLowerCase().includes(lower));
+    renderPanels(matches);
+  }
+  flags.forEach(f=>f.addEventListener('click',()=>{
+    currentLang = f.dataset.lang;
+    flags.forEach(x=>x.classList.remove('active'));
+    f.classList.add('active');
+    allPanels = content[currentLang]||content.en;
+    updateUI(); filterPanels(searchInput.value);
+  }));
+  searchInput.addEventListener('input',()=>filterPanels(searchInput.value));
+  lightbox.addEventListener('click',()=>lightbox.classList.remove('active'));
+
+  /* ---------- THEME ---------- */
+  function applyTheme(){document.documentElement.setAttribute('data-theme',currentTheme);
+    themeToggle.innerHTML = currentTheme==='light' ? '<i class="ti ti-moon"></i>' : '<i class="ti ti-sun"></i>';}
+  themeToggle.addEventListener('click',()=>{
+    currentTheme = currentTheme==='light'?'dark':'light';
+    localStorage.setItem('theme',currentTheme); applyTheme();
+  });
+
+  /* ---------- SERVICE WORKER (AUTO-UPDATE) ---------- */
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js?v=' + Date.now())
+      .then(reg => {
+        console.log('SW registered', reg);
+        reg.update();
+
+        reg.onupdatefound = () => {
+          newWorker = reg.installing;
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller && !isUpdating) {
+              showUpdateUI();
+            }
+          };
+        };
+      })
+      .catch(err => console.error('SW failed:', err));
+  });
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (isUpdating) {
+      console.log('Update applied — reloading');
+      window.location.reload();
+    }
+  });
+}
+
+function showUpdateUI() {
+  const banner = document.getElementById('update-banner');
+  if (banner) banner.style.display = 'block';
+}
+
+function updatePWA() {
+  if (newWorker && !isUpdating) {
+    isUpdating = true;
+
+    // INSTANTLY HIDE BANNER
+    const banner = document.getElementById('update-banner');
+    if (banner) banner.style.display = 'none';
+
+    // Apply update
+    newWorker.postMessage({ action: 'skipWaiting' });
+  }
+}
+
+  /* ---------- INIT ---------- */
+  loadVersion();
+  applyTheme();
+  loadContent();
 </script>
-<script src="js/app.js"></script>
 </body>
 </html>

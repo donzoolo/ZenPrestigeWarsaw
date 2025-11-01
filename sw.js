@@ -1,41 +1,58 @@
-const url = new URL(self.registration.scope);
-const VERSION = url.searchParams.get('v') || 'v0.0.0';
-const CACHE = `pwa-${VERSION}`;
-
-const ASSETS = [
-  '/', '/index.html', '/css/style.css', '/js/app.js', '/manifest.json',
-  '/assets/flags/en.svg', '/assets/flags/pl.svg', '/assets/flags/de.svg',
-  '/assets/icons/icon-192.png', '/assets/icons/icon/icons/icon-512.png'
+const CACHE_NAME = 'apartment-guide-v2';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/content.json',
+  '/manifest.json',
+  'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css',
+  'https://flagcdn.com/gb.svg',
+  'https://flagcdn.com/pl.svg',
+  'https://flagcdn.com/de.svg'
 ];
 
-self.addEventListener('install', e => e.waitUntil(
-  caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
-));
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(urlsToCache))
+      .then(() => self.skipWaiting())
+  );
+});
 
-self.addEventListener('activate', e => e.waitUntil(
-  caches.keys().then(keys => Promise.all(
-    keys.filter(k => k !== CACHE).map(k => caches.delete(k))
-  )).then(() => self.clients.claim())
-));
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
 
-self.addEventListener('fetch', e => {
-  const req = e.request;
-  const url = new URL(req.url);
-
-  if (url.origin !== self.location.origin) return;
-
-  if (req.url.includes('content.json') || req.url.includes('index.html')) {
-    e.respondWith(
-      fetch(req).then(r => caches.open(CACHE).then(c => { c.put(req, r.clone()); return r; }))
-        .catch(() => caches.match(req))
+self.addEventListener('fetch', event => {
+  if (event.request.url.includes('content.json')) {
+    event.respondWith(
+      fetch(event.request).then(response => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      }).catch(() => caches.match(event.request))
     );
   } else {
-    e.respondWith(
-      caches.match(req).then(cached => cached || fetch(req).then(r => caches.open(CACHE).then(c => { c.put(req, r.clone()); return r; })))
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => response || fetch(event.request))
     );
   }
 });
 
-self.addEventListener('message', e => {
-  if (e.data?.action === 'skipWaiting') self.skipWaiting();
+self.addEventListener('message', event => {
+  if (event.data && event.data.action === 'skipWaiting') {
+    console.log('SW: skipWaiting received');
+    self.skipWaiting();
+  }
 });
