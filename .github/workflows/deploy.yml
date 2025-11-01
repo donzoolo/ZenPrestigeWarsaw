@@ -19,18 +19,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate version
+      - name: Generate version and version.js
         id: version
         run: |
           VERSION="v$(date +'%Y%m%d.%H%M')"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "const VERSION = \"$VERSION\";" > version.js
-          echo "Created version.js: $(cat version.js)"
+          echo "Created version.js:"
+          cat version.js
 
       - name: Inject version into index.html
         run: |
           VERSION="${{ steps.version.outputs.version }}"
           sed -i "s/{{VERSION}}/$VERSION/g" index.html
+
+      - name: List files (debug)
+        run: ls -la
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
