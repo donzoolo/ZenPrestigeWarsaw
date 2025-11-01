@@ -1,45 +1,45 @@
+# .github/workflows/deploy.yml
 name: Deploy PWA
 
 on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write      # For tagging
-      pages: write         # For GitHub Pages
-      id-token: write      # For deploy
-
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Get latest tag
-        id: tag
+      - name: Generate version
+        id: version
         run: |
-          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          NEW_TAG=$(echo "$LATEST" | awk -F. '{$NF+=1; OFS="."}1')
-          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          VERSION="v$(date +'%Y%m%d.%H%M')"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "VERSION = \"$VERSION\";" > version.js
 
       - name: Inject version
         run: |
-          sed -i "s/const VERSION = \".*\"/const VERSION = \"${{ steps.tag.outputs.new_tag }}\"/" index.html
-          sed -i "s/const CACHE = '.*'/const CACHE = 'pwa-${{ steps.tag.outputs.new_tag }}'/" sw.js
+          sed -i "s/const VERSION = \".*\"/const VERSION = \"${{ steps.version.outputs.version }}\"/" index.html
+          sed -i "s/const CACHE = '.*'/const CACHE = 'pwa-${{ steps.version.outputs.version }}'/" sw.js
 
-      - name: Create tag
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag "${{ steps.tag.outputs.new_tag }}"
-          git push origin "${{ steps.tag.outputs.new_tag }}"
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          force_orphan: true
-          cname: zenprestigewarsaw.pl
+          path: '.'
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

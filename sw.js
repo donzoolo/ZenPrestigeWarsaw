@@ -1,4 +1,4 @@
-const CACHE = 'pwa-v0.0.6'; // Auto-injected
+const CACHE = `pwa-${VERSION}`; // Uses injected VERSION
 const ASSETS = [
   '/', '/index.html', '/css/style.css', '/manifest.json',
   '/assets/flags/en.svg', '/assets/flags/pl.svg', '/assets/flags/de.svg',
