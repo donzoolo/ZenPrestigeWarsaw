@@ -1,6 +1,10 @@
-const CACHE = `pwa-${VERSION}`; // Uses injected VERSION
+// === VERSION (from query param) ===
+const url = new URL(self.registration.scope);
+const VERSION = url.searchParams.get('v') || 'v0.0.0';
+const CACHE = `pwa-${VERSION}`;
+
 const ASSETS = [
-  '/', '/index.html', '/css/style.css', '/manifest.json',
+  '/', '/index.html', '/css/style.css', '/js/app.js', '/manifest.json',
   '/assets/flags/en.svg', '/assets/flags/pl.svg', '/assets/flags/de.svg',
   '/assets/icons/icon-192.png', '/assets/icons/icon-512.png'
 ];
@@ -16,27 +20,21 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
+  const req = e.request;
+  const url = new URL(req.url);
 
-  // Network-first for HTML + JSON
-  if (url.pathname.endsWith('.html') || url.pathname.endsWith('.json')) {
+  if (url.origin !== self.location.origin) return;
+
+  if (req.url.includes('content.json') || req.url.includes('index.html')) {
     e.respondWith(
-      fetch(e.request).then(r => caches.open(CACHE).then(c => { c.put(e.request, r.clone()); return r; }))
-        .catch(() => caches.match(e.request))
+      fetch(req).then(r => caches.open(CACHE).then(c => { c.put(req, r.clone()); return r; }))
+        .catch(() => caches.match(req))
     );
-    return;
+  } else {
+    e.respondWith(
+      caches.match(req).then(cached => cached || fetch(req).then(r => caches.open(CACHE).then(c => { c.put(req, r.clone()); return r; })))
+    );
   }
-
-  // Stale-while-revalidate for assets
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      const network = fetch(e.request).then(r => {
-        caches.open(CACHE).then(c => c.put(e.request, r.clone()));
-        return r;
-      });
-      return cached || network;
-    })
-  );
 });
 
 self.addEventListener('message', e => {

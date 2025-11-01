@@ -99,7 +99,11 @@ function savePanelState() {
 function loadPanelState() {
   const state = JSON.parse(localStorage.getItem('panelState') || '[]');
   document.querySelectorAll('.panel').forEach((p, i) => {
-    if (state[i]) p.classList.add('active');
+    if (state[i]) {
+      p.classList.add('active');
+      p.querySelector('.panel-title').setAttribute('aria-expanded', 'true');
+      p.querySelector('.panel-content').setAttribute('aria-hidden', 'false');
+    }
   });
 }
 
