@@ -158,7 +158,23 @@
     renderPanels(allPanels);
     updateUI();
   }
-
+	// === AUTO-VERSION FROM GITHUB ===
+	async function loadVersion() {
+	  try {
+		const res = await fetch('https://api.github.com/repos/YOURUSERNAME/your-apartment-guide/releases/latest');
+		if (res.ok) {
+		  const data = await res.json();
+		  const tag = data.tag_name || 'v1.0.0';
+		  const date = new Date(data.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+		  document.getElementById('version-footer').innerHTML = `Version ${tag} | Updated ${date}`;
+		} else {
+		  document.getElementById('version-footer').textContent = 'Version 1.0.0 | Updated Nov 1, 2025';  // Fallback
+		}
+	  } catch (err) {
+		console.warn('Version fetch failed:', err);
+		document.getElementById('version-footer').textContent = 'Version 1.0.0';  // Offline fallback
+	  }
+	}
   function updateUI() {
     pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
     searchInput.placeholder = translations.searchPlaceholder[currentLang];
@@ -253,6 +269,7 @@
   }
 
   /* ---------- INIT ---------- */
+  loadVersion();
   applyTheme();
   loadContent();
 </script>
