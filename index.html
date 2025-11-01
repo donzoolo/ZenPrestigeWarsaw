@@ -284,7 +284,12 @@
   </style>
 </head>
 <body>
-
+<div id="update-banner" style="display:none; background:#8B7E6A; color:white; padding:1rem; text-align:center; font-size:0.9rem;">
+  New version available! 
+  <button onclick="updatePWA()" style="background:white; color:#8B7E6A; border:none; padding:0.5rem 1rem; margin-left:0.5rem; border-radius:4px; cursor:pointer;">
+    Update Now
+  </button>
+</div>
 <div class="container">
   <header>
     <button class="theme-toggle" id="theme-toggle">
@@ -323,15 +328,39 @@
 </div>
 
 <script>
-  // === PWA: Register Service Worker ===
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('SW registered', reg))
-        .catch(err => console.log('SW failed', err));
-    });
-  }
+let newWorker;
+function showUpdateUI() {
+  document.getElementById('update-banner').style.display = 'block';
+}
 
+function updatePWA() {
+  newWorker.postMessage({ action: 'skipWaiting' });
+}
+
+self.addEventListener('controllerchange', () => {
+  window.location.reload();
+});
+  // === PWA: Register Service Worker ===
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js?v=' + Date.now()) // ← CHANGED
+      .then(reg => {
+        console.log('SW registered', reg);
+        // Force update check
+        reg.update();
+      })
+      .catch(err => console.log('SW failed', err));
+  });
+}
+// In SW registration success:
+reg.onupdatefound = () => {
+  newWorker = reg.installing;
+  newWorker.onstatechange = () => {
+    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+      showUpdateUI();
+    }
+  };
+};
   // === DOM ===
   const panelsContainer = document.getElementById('panels-container');
   const pageTitle = document.getElementById('page-title');
@@ -383,12 +412,11 @@
 
   // === Load Content ===
   async function loadContent() {
-    try {
-      const res = await fetch('content.json?' + Date.now());
-      if (!res.ok) throw new Error('Not found');
-      content = await res.json();
-      showOfflineNotice(false);
-    } catch (err) {
+	  try {
+		const res = await fetch('content.json?v=' + Date.now()); // ← CHANGED
+		if (!res.ok) throw new Error('Not found');
+		content = await res.json();
+	  } catch (err) {
       console.warn('Offline or error:', err);
       showOfflineNotice(true);
       const cache = await caches.open('apartment-guide-v1');
