@@ -52,6 +52,7 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('message', event => {
   if (event.data && event.data.action === 'skipWaiting') {
+    console.log('SW: skipWaiting received');
     self.skipWaiting();
   }
 });

@@ -159,20 +159,22 @@
     updateUI();
   }
 	// === AUTO-VERSION FROM GITHUB ===
-	async function loadVersion() {
+async function loadVersion() {
   try {
     const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/tags?per_page=1');
-    if (res.ok) {
+    if (!res.ok) throw new Error('API failed');
+
     const tags = await res.json();
-      if (tags.length > 0) {
-        const latest = tags[0];
-        const version = latest.name;
-        const date = new Date(latest.commit.committer.date).toLocaleDateString();
-        console.log('Version:', version, '| Updated:', date);
-      }
-    }
+    if (!tags || tags.length === 0) throw new Error('No tags');
+
+    const latest = tags[0];
+    const version = latest.name;
+    const date = new Date(latest.commit?.committer?.date || Date.now())
+      .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+    console.log('Version:', version, '| Updated:', date);
   } catch (err) {
-    console.warn('Version fetch failed (offline):', err);
+    console.warn('Version fetch failed (offline/no tags):', err.message);
   }
 }
   function updateUI() {
@@ -229,44 +231,41 @@
 
   /* ---------- SERVICE WORKER (AUTO-UPDATE) ---------- */
   if ('serviceWorker' in navigator) {
-    let registration;               // keep the registration object
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js?v=' + Date.now())
-        .then(reg => {
-          registration = reg;
-          console.log('SW registered', reg);
-          reg.update();                     // ask for updates now
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js?v=' + Date.now())
+      .then(reg => {
+        console.log('SW registered', reg);
+        reg.update();
 
-          // ---- NEW VERSION DETECTION ----
-          reg.onupdatefound = () => {
-            newWorker = reg.installing;
-            newWorker.onstatechange = () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                showUpdateUI();        // banner appears
-              }
-            };
+        reg.onupdatefound = () => {
+          newWorker = reg.installing;
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateUI();
+            }
           };
-        })
-        .catch(err => console.error('SW registration failed', err));
-    });
+        };
+      })
+      .catch(err => console.error('SW failed:', err));
+  });
 
-    // ---- RELOAD ONLY AFTER USER CLICKS ----
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      // page will reload **only** after the user clicks “Update Now”
-    });
-  }
+  // === RELOAD ONLY AFTER NEW SW IS ACTIVE ===
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    console.log('New SW activated — reloading...');
+    window.location.reload();
+  });
+}
 
-  function showUpdateUI() {
-    const banner = document.getElementById('update-banner');
-    if (banner) banner.style.display = 'block';
-  }
+function showUpdateUI() {
+  const banner = document.getElementById('update-banner');
+  if (banner) banner.style.display = 'block';
+}
 
-  function updatePWA() {
-    if (newWorker) {
-      newWorker.postMessage({action:'skipWaiting'});
-      // after skipWaiting the controllerchange fires → page reloads
-    }
+function updatePWA() {
+  if (newWorker) {
+    newWorker.postMessage({ action: 'skipWaiting' });
   }
+}
 
   /* ---------- INIT ---------- */
   loadVersion();
