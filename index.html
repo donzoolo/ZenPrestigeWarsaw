@@ -408,6 +408,7 @@
   let currentLang = 'en';
   let allPanels = [];
   let currentTheme = localStorage.getItem('theme') || 'light';
+  let newWorker; // ← Global so updatePWA() can access it
 
   // === TRANSLATIONS ===
   const translations = {
@@ -431,7 +432,7 @@
       pl: "Masz sugestie? Napisz na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
       de: "Vorschläge? Schreiben Sie an <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>"
     },
-    noResults: {
+    0: {
       en: "No instructions found. Try another keyword.",
       pl: "Nie znaleziono instrukcji. Spróbuj innego słowa.",
       de: "Keine Anweisungen gefunden. Versuchen Sie ein anderes Wort."
@@ -537,8 +538,7 @@
     applyTheme();
   });
 
-  // === PWA: Register Service Worker with Auto-Update ===
-  let newWorker;
+  // === PWA: Register Service Worker with Auto-Update (FIXED!) ===
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js?v=' + Date.now())
@@ -546,6 +546,7 @@
           console.log('SW registered', reg);
           reg.update();
 
+          // === AUTO-UPDATE LOGIC (ALL INSIDE .then()) ===
           reg.onupdatefound = () => {
             newWorker = reg.installing;
             newWorker.onstatechange = () => {
@@ -559,6 +560,7 @@
     });
   }
 
+  // === UPDATE BANNER FUNCTIONS ===
   function showUpdateUI() {
     const banner = document.getElementById('update-banner');
     if (banner) banner.style.display = 'block';
@@ -570,6 +572,7 @@
     }
   }
 
+  // === Reload on new SW ===
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     window.location.reload();
   });
