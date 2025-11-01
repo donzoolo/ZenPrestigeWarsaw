@@ -284,13 +284,13 @@
   </style>
 </head>
 <body>
+<div class="container">
 <div id="update-banner" style="display:none; background:#8B7E6A; color:white; padding:1rem; text-align:center; font-size:0.9rem;">
   New version available! 
   <button onclick="updatePWA()" style="background:white; color:#8B7E6A; border:none; padding:0.5rem 1rem; margin-left:0.5rem; border-radius:4px; cursor:pointer;">
     Update Now
   </button>
 </div>
-<div class="container">
   <header>
     <button class="theme-toggle" id="theme-toggle">
       <i class="ti ti-moon"></i>
@@ -343,13 +343,23 @@ self.addEventListener('controllerchange', () => {
   // === PWA: Register Service Worker ===
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js?v=' + Date.now()) // ← CHANGED
-      .then(reg => {
-        console.log('SW registered', reg);
-        // Force update check
-        reg.update();
-      })
-      .catch(err => console.log('SW failed', err));
+navigator.serviceWorker.register('sw.js?v=' + Date.now())
+  .then(reg => {
+    console.log('SW registered', reg);
+    reg.update(); // Check for updates
+
+    // === AUTO-UPDATE BANNER ===
+    let newWorker;
+    reg.onupdatefound = () => {
+      newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          showUpdateUI();
+        }
+      };
+    };
+  })
+  .catch(err => console.log('SW failed', err));
   });
 }
 // In SW registration success:
