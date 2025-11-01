@@ -1,0 +1,30 @@
+name: Auto-Tag Release
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # Needed to push tags
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Get full history for tagging
+
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          NEW_TAG=$(echo "$LATEST" | awk -F. '{$NF+=1; OFS="."}1')
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag ${{ steps.get_tag.outputs.new_tag }}
+          git push origin ${{ steps.get_tag.outputs.new_tag }}
