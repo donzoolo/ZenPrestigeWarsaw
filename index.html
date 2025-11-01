@@ -236,11 +236,8 @@ async function loadVersion() {
     navigator.serviceWorker.register('sw.js?v=' + Date.now())
       .then(reg => {
         console.log('SW registered', reg);
-
-        // Check for updates
         reg.update();
 
-        // Detect new version
         reg.onupdatefound = () => {
           newWorker = reg.installing;
           newWorker.onstatechange = () => {
@@ -253,10 +250,9 @@ async function loadVersion() {
       .catch(err => console.error('SW failed:', err));
   });
 
-  // === RELOAD ONLY ONCE, AFTER USER CLICKS ===
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (isUpdating) {
-      console.log('Update applied — reloading once');
+      console.log('Update applied — reloading');
       window.location.reload();
     }
   });
@@ -269,7 +265,13 @@ function showUpdateUI() {
 
 function updatePWA() {
   if (newWorker && !isUpdating) {
-    isUpdating = true;  // Prevent double reload
+    isUpdating = true;
+
+    // INSTANTLY HIDE BANNER
+    const banner = document.getElementById('update-banner');
+    if (banner) banner.style.display = 'none';
+
+    // Apply update
     newWorker.postMessage({ action: 'skipWaiting' });
   }
 }
