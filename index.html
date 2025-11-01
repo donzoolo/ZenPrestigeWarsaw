@@ -160,21 +160,21 @@
   }
 	// === AUTO-VERSION FROM GITHUB ===
 	async function loadVersion() {
-	  try {
-		const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/releases/latest');
-		if (res.ok) {
-		  const data = await res.json();
-		  const tag = data.tag_name || 'v1.0.0';
-		  const date = new Date(data.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-		  document.getElementById('version-footer').innerHTML = `Version ${tag} | Updated ${date}`;
-		} else {
-		  document.getElementById('version-footer').textContent = 'Version 1.0.0 | Updated Nov 1, 2025';  // Fallback
-		}
-	  } catch (err) {
-		console.warn('Version fetch failed:', err);
-		document.getElementById('version-footer').textContent = 'Version 1.0.0';  // Offline fallback
-	  }
-	}
+  try {
+    const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/tags?per_page=1');
+    if (res.ok) {
+    const tags = await res.json();
+      if (tags.length > 0) {
+        const latest = tags[0];
+        const version = latest.name;
+        const date = new Date(latest.commit.committer.date).toLocaleDateString();
+        console.log('Version:', version, '| Updated:', date);
+      }
+    }
+  } catch (err) {
+    console.warn('Version fetch failed (offline):', err);
+  }
+}
   function updateUI() {
     pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
     searchInput.placeholder = translations.searchPlaceholder[currentLang];
