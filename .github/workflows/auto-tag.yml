@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Get full history for tagging
+          fetch-depth: 0
 
       - name: Get latest tag
         id: get_tag
@@ -22,9 +22,12 @@ jobs:
           NEW_TAG=$(echo "$LATEST" | awk -F. '{$NF+=1; OFS="."}1')
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
-      - name: Create and push tag
+      - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag ${{ steps.get_tag.outputs.new_tag }}
-          git push origin ${{ steps.get_tag.outputs.new_tag }}
+
+      - name: Create and push tag
+        run: |
+          git tag "${{ steps.get_tag.outputs.new_tag }}"
+          git push origin "${{ steps.get_tag.outputs.new_tag }}"
