@@ -110,7 +110,36 @@
 	},
 	{
 	"title": "Co zobaczyć w Warszawie",
-	"html":"<p>Warszawa oferuje wiele atrakcji dla każdego. Oto propozycje:</p><p><strong>Klasyka Warszawy — must see</strong></p><ul><li>Stare Miasto – rynek, Zamek Królewski, kolumna Zygmunta, kolorowe kamieniczki, katedra św. Jana</li><li>Plac Zamkowy i Krakowskie Przedmieście – najbardziej reprezentacyjna ulica miasta</li><li>Łazienki Królewskie – park, Pałac na Wyspie, pomnik Chopina, pawie i wiewiórki</li><li>Multimedialny Park Fontann – widowiskowe pokazy światła, wody i muzyki (maj–wrzesień, weekendy)</li><li>Pałac w Wilanowie – „polski Wersal” z pięknymi ogrodami</li><li>Plac Zbawiciela – kawiarnie i miejski klimat</li><li>Varso Tower – najwyższy taras widokowy w UE</li><li>Pałac Kultury i Nauki – taras widokowy z panoramą miasta</li></ul><p><strong>Relaks, natura i spacer</strong></p><ul><li>Bulwary Wiślane – ścieżki, leżaki, bary nad rzeką, klimatyczne miejsca na zachód słońca</li><li>Ogród Saski i Plac Piłsudskiego – spokojna przestrzeń w centrum miasta</li><li>Ogród na dachu Biblioteki Uniwersyteckiej (BUW) – widok na Wisłę, Stadion Narodowy i mosty</li><li>Ogród Botaniczny PAN lub UW – oaza zieleni w mieście</li><li>Zoo Warszawskie – wiele gatunków zwierząt w zielonej scenerii</li></ul><p><strong>Historia, kultura, nauka, sztuka</strong></p><ul><li>Muzeum Powstania Warszawskiego – nowoczesne, wzruszające i dobrze zorganizowane</li><li>Centrum Nauki Kopernik – dla dorosłych i dzieci, interaktywna nauka</li><li>Muzeum Narodowe – sztuka polska i europejska</li><li>Muzeum Fryderyka Chopina – interaktywne i kameralne</li><li>POLIN – Muzeum Historii Żydów Polskich</li><li>Muzeum Neonów – kolorowa historia PRL-u</li></ul><p><strong>Foodhalle i kulinarne przestrzenie</strong></p><ul><li>Browary Warszawskie – nowoczesna przestrzeń gastronomiczna z piwnymi tradycjami</li><li>Fabryka Norblina – industrialny klimat, wiele restauracji pod jednym dachem</li><li>Hala Koszyki – odrestaurowany foodhall z kuchniami z całego świata</li><li>Elektrownia Powiśle – design, restauracje, bary, concept store’y</li><li>Centrum Praskie Koneser – galerie, rzemieślnicze sklepy, modne knajpki</li><li>Hala Gwardii – jedzenie, lokalne produkty, targ i koncerty</li><li>Nocny Market (maj–wrzesień) – street food z całego świata na dawnym peronie dworca Warszawa Główna</li></ul>"
+	"html": "<p>Warszawa oferuje wiele atrakcji dla każdego. Oto propozycje:</p><p><strong>Klasyka Warszawy — must see</strong></p><ul>
+	<li>Stare Miasto – rynek, Zamek Królewski, kolumna Zygmunta, kolorowe kamieniczki, katedra św. Jana</li>
+	<li>Plac Zamkowy i Krakowskie Przedmieście – najbardziej reprezentacyjna ulica miasta</li>
+	<li>Łazienki Królewskie – park, Pałac na Wyspie, pomnik Chopina, pawie i wiewiórki</li>
+	<li>Multimedialny Park Fontann – widowiskowe pokazy światła, wody i muzyki (maj–wrzesień, weekendy)</li>
+	<li>Pałac w Wilanowie – „polski Wersal” z pięknymi ogrodami</li>
+	<li>Plac Zbawiciela – kawiarnie i miejski klimat</li>
+	<li>Varso Tower – najwyższy taras widokowy w UE</li>
+	<li>Pałac Kultury i Nauki – taras widokowy z panoramą miasta</li>
+	</ul><p><strong>Relaks, natura i spacer</strong></p><ul>
+	<li>Bulwary Wiślane – ścieżki, leżaki, bary nad rzeką, klimatyczne miejsca na zachód słońca</li>
+	<li>Ogród Saski i Plac Piłsudskiego – spokojna przestrzeń w centrum miasta</li>
+	<li>Ogród na dachu Biblioteki Uniwersyteckiej (BUW) – widok na Wisłę, Stadion Narodowy i mosty</li>
+	<li>Ogród Botaniczny PAN lub UW – oaza zieleni w mieście</li>
+	<li>Zoo Warszawskie – wiele gatunków zwierząt w zielonej scenerii</li>
+	</ul><p><strong>Historia, kultura, nauka, sztuka</strong></p><ul>
+	<li>Muzeum Powstania Warszawskiego – nowoczesne, wzruszające i dobrze zorganizowane</li>
+	<li>Centrum Nauki Kopernik – dla dorosłych i dzieci, interaktywna nauka</li>
+	<li>Muzeum Narodowe – sztuka polska i europejska</li>
+	<li>Muzeum Fryderyka Chopina – interaktywne i kameralne</li>
+	<li>POLIN – Muzeum Historii Żydów Polskich</li>
+	<li>Muzeum Neonów – kolorowa historia PRL-u</li>
+	</ul><p><strong>Foodhalle i kulinarne przestrzenie</strong></p><ul>
+	<li>Browary Warszawskie – nowoczesna przestrzeń gastronomiczna z piwnymi tradycjami</li>
+	<li>Fabryka Norblina – industrialny klimat, wiele restauracji pod jednym dachem</li>
+	<li>Hala Koszyki – odrestaurowany foodhall z kuchniami z całego świata</li>
+	<li>Elektrownia Powiśle – design, restauracje, bary, concept store’y</li>
+	<li>Centrum Praskie Koneser – galerie, rzemieślnicze sklepy, modne knajpki</li>
+	<li>Hala Gwardii – jedzenie, lokalne produkty, targ i koncerty</li>
+	<li>Nocny Market (maj–wrzesień) – street food z całego świata na dawnym peronie dworca Warszawa Główna</li></ul>"
 	}],
     "de": [{
             "title": "Wie benutzt man die Klimaanlage?",
