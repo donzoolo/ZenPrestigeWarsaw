@@ -1,16 +1,78 @@
 {
-    "titles": {
-        "en": "Welcome to Your Apartment",
-        "pl": "Witamy w Twoim Apartamencie",
-        "de": "Willkommen in Ihrer Wohnung",
-        "fr": "Bienvenue dans votre appartement",
-        "it": "Benvenuti nel vostro appartamento",
-        "es": "Bienvenido a su apartamento",
-        "nl": "Welkom in uw appartement",
-        "cz": "Vítejte ve svém apartmánu",
-        "sk": "Vitajte vo svojom apartmáne",
-        "ua": "Ласкаво просимо до вашої квартири"
+  "titles": {
+    "en": "Welcome to Your Apartment",
+    "pl": "Witamy w Twoim Apartamencie",
+    "de": "Willkommen in Ihrer Wohnung",
+    "fr": "Bienvenue dans votre appartement",
+    "it": "Benvenuti nel vostro appartamento",
+    "es": "Bienvenido a su apartamento",
+    "nl": "Welkom in uw appartement",
+    "cz": "Vítejte ve svém apartmánu",
+    "sk": "Vitajte vo svojom apartmáne",
+    "ua": "Ласкаво просимо до вашої квартири"
+  },
+  "ui": {
+    "searchPlaceholder": {
+      "en": "Search instructions…",
+      "pl": "Szukaj instrukcji…",
+      "de": "Anweisungen suchen…",
+      "fr": "Rechercher des instructions…",
+      "it": "Cerca istruzioni…",
+      "es": "Buscar instrucciones…",
+      "nl": "Zoek instructies…",
+      "cz": "Hledat pokyny…",
+      "sk": "Hľadať inštrukcie…",
+      "ua": "Шукати інструкції…"
     },
+    "contactTitle": {
+      "en": "Contact Us",
+      "pl": "Skontaktuj się z nami",
+      "de": "Kontaktieren Sie uns",
+      "fr": "Contactez-nous",
+      "it": "Contattaci",
+      "es": "Contáctenos",
+      "nl": "Neem contact op",
+      "cz": "Kontaktujte nás",
+      "sk": "Kontaktujte nás",
+      "ua": "Зв'яжіться з нами"
+    },
+    "contactIssues": {
+      "en": "For any issues with the apartment, please contact: <strong>Jan Kowalski</strong> at <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> or phone <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "pl": "W razie problemów z apartamentem: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> lub <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "de": "Bei Problemen mit der Wohnung: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> oder <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "fr": "En cas de problème avec l'appartement, contactez : <strong>Jan Kowalski</strong> à <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> ou au <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "it": "Per qualsiasi problema con l'appartamento, contatta: <strong>Jan Kowalski</strong> a <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> o al <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "es": "Para cualquier problema con el apartamento, contacta con: <strong>Jan Kowalski</strong> en <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> o al <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "nl": "Bij problemen met het appartement, neem contact op met: <strong>Jan Kowalski</strong> via <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> of telefoon <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "cz": "V případě problémů s apartmánem kontaktujte: <strong>Jan Kowalski</strong> na <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> nebo telefonicky <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "sk": "V prípade problémov s apartmánom kontaktujte: <strong>Jan Kowalski</strong> na <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> alebo telefonicky <a href='tel:+48123456789'>+48 123 456 789</a>",
+      "ua": "У разі проблем з апартаментами звертайтеся до: <strong>Jan Kowalski</strong> за адресою <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> або за телефоном <a href='tel:+48123456789'>+48 123 456 789</a>"
+    },
+    "contactSuggestions": {
+      "en": "For suggestions about the apartment or this guide, email us at <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "pl": "Masz sugestie? Napisz na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "de": "Vorschläge? Schreiben Sie an <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "fr": "Des suggestions ? Écrivez-nous à <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "it": "Hai suggerimenti? Scrivici a <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "es": "¿Sugerencias? Escríbenos a <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "nl": "Suggesties? Stuur een e-mail naar <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "cz": "Máte návrhy? Napište nám na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "sk": "Máte návrhy? Napíšte nám na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+      "ua": "Є пропозиції? Напишіть нам на <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>"
+    },
+    "noResults": {
+      "en": "No instructions found. Try another keyword.",
+      "pl": "Nie znaleziono instrukcji. Spróbuj innego słowa.",
+      "de": "Keine Anweisungen gefunden. Versuchen Sie ein anderes Wort.",
+      "fr": "Aucune instruction trouvée. Essayez un autre mot-clé.",
+      "it": "Nessuna istruzione trovata. Prova un'altra parola chiave.",
+      "es": "No se encontraron instrucciones. Prueba otra palabra clave.",
+      "nl": "Geen instructies gevonden. Probeer een ander trefwoord.",
+      "cz": "Nebyly nalezeny žádné pokyny. Zkuste jiné klíčové slovo.",
+      "sk": "Neboli nájdené žiadne inštrukcie. Skúste iné kľúčové slovo.",
+      "ua": "Інструкції не знайдено. Спробуйте інше ключове слово."
+    }
+  },
     "en": [{
             "title": "How to use Air Conditioning 6",
             "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
