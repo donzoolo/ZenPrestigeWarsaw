@@ -1,15 +1,15 @@
 {
   "titles": {
-    "en": "Welcome to Your Apartment",
-    "pl": "Witamy w Twoim Apartamencie",
-    "de": "Willkommen in Ihrer Wohnung",
-    "fr": "Bienvenue dans votre appartement",
-    "it": "Benvenuti nel vostro appartamento",
-    "es": "Bienvenido a su apartamento",
-    "nl": "Welkom in uw appartement",
-    "cz": "Vítejte ve svém apartmánu",
-    "sk": "Vitajte vo svojom apartmáne",
-    "ua": "Ласкаво просимо до вашої квартири"
+    "en": "Welcome to Zen Prestige Warsaw",
+    "pl": "Witamy w Zen Prestige Warsaw",
+    "de": "Willkommen in Zen Prestige Warsaw",
+    "fr": "Bienvenue dans Zen Prestige Warsaw",
+    "it": "Benvenuti nel Zen Prestige Warsaw",
+    "es": "Bienvenido a Zen Prestige Warsaw",
+    "nl": "Welkom in Zen Prestige Warsaw",
+    "cz": "Vítejte ve Zen Prestige Warsaw",
+    "sk": "Vitajte vo Zen Prestige Warsaw",
+    "ua": "Ласкаво просимо до Zen Prestige Warsaw"
   },
   "ui": {
     "searchPlaceholder": {
@@ -85,16 +85,29 @@
         }
     ],
     "pl": [{
-            "title": "Jak używać klimatyzacji",
-            "html": "<p>Klimatyzacja znajduje się w salonie. Pilot leży na stoliku kawowym.</p><p><strong>Włączenie:</strong> Naciśnij czerwony przycisk zasilania.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Pilot\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Jednostka\"></div><p>Ustaw temperaturę 20–24°C dla komfortu.</p>"
-        }, {
-            "title": "Jak używać TV i Netflixa",
-            "html": "<p>Pilot do TV leży obok telewizora. Netflix jest zainstalowany.</p><ol><li>Włącz TV czarnym pilotem</li><li>Wybierz HDMI 1</li><li>Użyj srebrnego pilota do Netflixa</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
-        }, {
-            "title": "Wi-Fi i Internet",
-            "html": "<p>Sieć: <strong>Apartment_Guest</strong></p><p>Hasło: <strong>Summer2025!</strong></p><p>Prędkość: 100 Mbps. Działa we wszystkich pokojach.</p>"
-        }
-    ],
+"title": "Jak używać klimatyzacji",
+"html": "<p>W mieszkaniu są dwie jednostki klimatyzacji: jedna na parterze nad lodówką oraz druga na piętrze. Każda jednostka ma osobny pilot.</p><p><strong>Włączenie i tryb pracy:</strong> Użyj dedykowanego pilota. Ustaw tryb chłodzenia lub grzania oraz preferowaną temperaturę.</p><p><strong>Rozwiązywanie problemów:</strong> Jeśli klimatyzacja nie reaguje, spróbuj użyć drugiego pilota. Jeśli nadal nie działa, sprawdź bezpieczniki elektryczne (osobna instrukcja).</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Klimatyzacja\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+},
+{
+"title": "Jak używać ogrzewania",
+"html": "<p><strong>Łazienka:</strong> Ogrzewanie regulowane pokrętłem na grzejniku.</p><p><strong>Parter:</strong> Panel sterujący przy wejściu. Ustaw temperaturę i tryb grzania. Grzejniki podłogowe przy oknach uruchomią się automatycznie.</p><p><strong>Piętro:</strong> Dwa grzejniki na ścianach (przy biurku i za łóżkiem). Regulacja pokrętłem na grzejniku.</p><p><strong>Brak grzania:</strong> Sprawdź zawory ciepłej wody w szafach na korytarzu poza mieszkaniem. Zawory oznaczone numerem 614. Wszystkie trzy powinny być ustawione jak na zdjęciach.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Zawory\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Panel\"></div>"
+},
+{
+"title": "Jak używać TV i Netflixa",
+"html": "<p>Telewizor ma zainstalowaną aplikację Netflix. Jeśli nie jesteś zalogowany, kontakt z zespołem Renters.</p><ol><li>Włącz telewizor głównym pilotem.</li><li>Wybierz źródło HDMI 1.</li><li>Drugi pilot obsługuje telewizję kablową. Dekoder znajduje się w szafce pod telewizorem.</li><li>Jeżeli pilot nie reaguje, otwórz drzwiczki szafki i skieruj pilot bezpośrednio na dekoder.</li><li>Krótkie naciśnięcie przycisku wyłączania aktywuje tryb galerii obrazów. Przytrzymanie wyłącza TV.</li></ol><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Telewizor\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+},
+{
+"title": "Miejsce parkingowe w garażu podziemnym",
+"html": "<p>Pilot do bramy garażowej znajduje się w apartamencie. Po otwarciu bramy zjedź na poziom -2.</p><p>Miejsce parkingowe numer 50.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Garaż\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+},
+{
+"title": "Gdzie wynieść śmieci",
+"html": "<p>Śmieci posegregowane wynieś do pomieszczenia ze śmietnikami przy wjeździe do garażu.</p><p>Wyjdź z budynku, skręć w lewo. Wejście otwierane kluczem otrzymanym od zespołu Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Śmietnik\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Wejście\"></div>"
+},
+{
+"title": "Instrukcja obsługi bezpieczników elektrycznych",
+"html": "<p>Jeśli sprzęt nie działa (np. kuchenka, klimatyzacja), przyczyną mogą być wyłączone bezpieczniki.</p><p>Otwórz szafę przy wejściu do mieszkania i upewnij się, że wszystkie bezpieczniki są w pozycji włączonej (do góry).</p><p>Bez ryzyka porażenia prądem. Jeśli bezpiecznik wyłącza się ponownie, może to oznaczać awarię. Kontakt z zespołem Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Bezpieczniki\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Tablica\"></div>"
+} ],
     "de": [{
             "title": "Wie benutzt man die Klimaanlage?",
             "html": "<p>Die Klimaanlage befindet sich im Wohnzimmer. Die Fernbedienung liegt auf dem Couchtisch.</p><p><strong>Einschalten:</strong> Drücken Sie die rote Einschalttaste.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Fernbedienung\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Klimaanlage\"></div><p>Stellen Sie die Temperatur auf 20–24°C ein.</p>"
