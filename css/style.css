@@ -29,7 +29,6 @@ header { padding:2rem 2rem 1.5rem; text-align:center; border-bottom:1px solid va
 [data-theme=dark] .theme-toggle:hover { background:rgba(191,175,143,.2) }
 h1 { font-size:1.8rem; font-weight:500; color:var(--accent); margin-bottom:.5rem }
 
-.lang-switcher { display:flex; justify-content:center; gap:.75rem; margin-top:1rem }
 .flag { width:36px; height:24px; cursor:pointer; border-radius:6px; object-fit:cover; border:1px solid var(--border); transition:transform .2s,border .2s }
 .flag:hover { transform:scale(1.1) }
 .flag.active { border:2px solid var(--accent) }
