@@ -102,21 +102,34 @@ h1 { font-size:1.8rem; font-weight:500; color:var(--accent); margin-bottom:.5rem
   .contact-section { padding:2rem 1rem }
 }
 
-/* ===== PANEL CONTENT LISTS ===== */
+/* ===== LISTY W PANELU — Z ODSTĘPEM PO PARAGRAFIE ===== */
+.panel-text p {
+  margin-bottom: 1rem; /* Domyślny odstęp pod akapitem */
+}
+
 .panel-text ol,
 .panel-text ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem; /* Indent list */
+  margin: 1.5rem 0 1rem 0;     /* GÓRNY ODSTĘP: 1.5rem = pusty wiersz */
+  padding-left: 1.8rem;
+  list-style-position: outside;
 }
 
-.panel-text li {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  padding-left: 0.25rem;
+/* === MOBILE: mniejszy odstęp, ale nadal czytelny === */
+@media (max-width: 480px) {
+  .panel-text p {
+    margin-bottom: 0.8rem;
+  }
+  .panel-text ol,
+  .panel-text ul {
+    margin: 1.2rem 0 0.8rem 0;
+    padding-left: 1.4rem;
+  }
 }
 
-/* Optional: Better spacing after paragraph before list */
-.panel-text p + ol,
-.panel-text p + ul {
-  margin-top: -0.5rem;
+/* === TABLET & DESKTOP === */
+@media (min-width: 481px) {
+  .panel-text ol,
+  .panel-text ul {
+    margin: 1.6rem 0 1rem 0;
+  }
 }
