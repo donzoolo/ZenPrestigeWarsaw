@@ -1,22 +1,22 @@
-const CACHE_NAME = 'apartment-guide-v2';
+const CACHE_NAME = 'apartment-guide-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/content.json',
   '/manifest.json',
   '/css/style.css',
-  'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css',
-  // Local flags
-  '/assets/flags/en.svg',
-  '/assets/flags/pl.svg',
-  '/assets/flags/de.svg',
-  '/assets/flags/fr.svg',
-  '/assets/flags/it.svg',
-  '/assets/flags/es.svg',
-  '/assets/flags/nl.svg',
-  '/assets/flags/cs.svg',
-  '/assets/flags/sk.svg',
-  '/assets/flags/uk.svg'
+  '/css/tabler-icons.css',
+  // Local PNG Flags
+  '/assets/flags/en.png',
+  '/assets/flags/pl.png',
+  '/assets/flags/de.png',
+  '/assets/flags/fr.png',
+  '/assets/flags/it.png',
+  '/assets/flags/es.png',
+  '/assets/flags/nl.png',
+  '/assets/flags/cs.png',
+  '/assets/flags/sk.png',
+  '/assets/flags/uk.png'
 ];
 
 self.addEventListener('install', event => {
