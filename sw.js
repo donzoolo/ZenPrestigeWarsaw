@@ -7,14 +7,14 @@ const urlsToCache = [
   '/css/style.css',
   '/css/tabler-icons.css',
   // Local PNG Flags
-  '/assets/flags/en.png',
+  '/assets/flags/gb.png',
   '/assets/flags/pl.png',
   '/assets/flags/de.png',
   '/assets/flags/fr.png',
   '/assets/flags/it.png',
   '/assets/flags/es.png',
   '/assets/flags/nl.png',
-  '/assets/flags/cs.png',
+  '/assets/flags/cz.png',
   '/assets/flags/sk.png',
   '/assets/flags/uk.png'
 ];
