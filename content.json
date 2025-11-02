@@ -7,7 +7,7 @@
         "it": "Benvenuti nel vostro appartamento",
         "es": "Bienvenido a su apartamento",
         "nl": "Welkom in uw appartement",
-        "cs": "Vítejte ve svém apartmánu",
+        "cz": "Vítejte ve svém apartmánu",
         "sk": "Vitajte vo svojom apartmáne",
         "uk": "Ласкаво просимо до вашої квартири"
     },
@@ -88,7 +88,7 @@
             "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
         }
     ],
-    "cs": [{
+    "cz": [{
             "title": "How to use Air Conditioning 6",
             "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
         }, {
