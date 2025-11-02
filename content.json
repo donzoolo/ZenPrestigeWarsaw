@@ -86,28 +86,62 @@
     ],
     "pl": [{
 "title": "Jak używać klimatyzacji",
-"html": "<p>W mieszkaniu są dwie jednostki klimatyzacji: jedna na parterze nad lodówką oraz druga na piętrze. Każda jednostka ma osobny pilot.</p><p><strong>Włączenie i tryb pracy:</strong> Użyj dedykowanego pilota. Ustaw tryb chłodzenia lub grzania oraz preferowaną temperaturę.</p><p><strong>Rozwiązywanie problemów:</strong> Jeśli klimatyzacja nie reaguje, spróbuj użyć drugiego pilota. Jeśli nadal nie działa, sprawdź bezpieczniki elektryczne (osobna instrukcja).</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Klimatyzacja\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+"html": "<p>Mieszkanie ma dwie klimatyzacje: jedna na parterze nad lodówką, druga na piętrze. Każda jednostka ma własny pilot.</p><p><strong>Włączenie i ustawienia:</strong> Użyj odpowiedniego pilota, wybierz tryb chłodzenia lub grzania i ustaw preferowaną temperaturę.</p><p><strong>Problemy:</strong> Jeśli klimatyzacja nie działa, spróbuj drugiego pilota. Jeśli nadal nie reaguje, sprawdź bezpieczniki elektryczne (instrukcja osobno).</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Klimatyzacja\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
 },
 {
 "title": "Jak używać ogrzewania",
-"html": "<p><strong>Łazienka:</strong> Ogrzewanie regulowane pokrętłem na grzejniku.</p><p><strong>Parter:</strong> Panel sterujący przy wejściu. Ustaw temperaturę i tryb grzania. Grzejniki podłogowe przy oknach uruchomią się automatycznie.</p><p><strong>Piętro:</strong> Dwa grzejniki na ścianach (przy biurku i za łóżkiem). Regulacja pokrętłem na grzejniku.</p><p><strong>Brak grzania:</strong> Sprawdź zawory ciepłej wody w szafach na korytarzu poza mieszkaniem. Zawory oznaczone numerem 614. Wszystkie trzy powinny być ustawione jak na zdjęciach.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Zawory\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Panel\"></div>"
+"html": "<p><strong>Łazienka:</strong> Regulacja za pomocą pokrętła na grzejniku.</p><p><strong>Parter:</strong> Panel sterujący przy wejściu – ustaw temperaturę i tryb grzania. Grzejniki podłogowe przy oknach uruchomią się automatycznie.</p><p><strong>Piętro:</strong> Dwa grzejniki na ścianach (przy biurku i za łóżkiem). Regulacja pokrętłem.</p><p><strong>Jeśli grzejniki nie działają:</strong> Sprawdź zawory ciepłej wody w szafach na korytarzu. Zawory oznaczone numerem 614. Wszystkie trzy powinny być ustawione jak na zdjęciach.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Zawory\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Panel\"></div>"
 },
 {
 "title": "Jak używać TV i Netflixa",
-"html": "<p>Telewizor ma zainstalowaną aplikację Netflix. Jeśli nie jesteś zalogowany, kontakt z zespołem Renters.</p><ol><li>Włącz telewizor głównym pilotem.</li><li>Wybierz źródło HDMI 1.</li><li>Drugi pilot obsługuje telewizję kablową. Dekoder znajduje się w szafce pod telewizorem.</li><li>Jeżeli pilot nie reaguje, otwórz drzwiczki szafki i skieruj pilot bezpośrednio na dekoder.</li><li>Krótkie naciśnięcie przycisku wyłączania aktywuje tryb galerii obrazów. Przytrzymanie wyłącza TV.</li></ol><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Telewizor\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+"html": "<p>Telewizor ma zainstalowaną aplikację Netflix. Jeśli nie jesteś zalogowany, skontaktuj się z zespołem Renters.</p><ol><li>Włącz TV głównym pilotem.</li><li>Wybierz źródło HDMI 1.</li><li>Drugi pilot obsługuje telewizję kablową. Dekoder w szafce pod TV.</li><li>Jeśli pilot nie reaguje, otwórz szafkę i skieruj pilot bezpośrednio na dekoder.</li><li>Krótkie naciśnięcie przycisku wyłączania aktywuje tryb galerii obrazów. Przytrzymanie wyłącza TV.</li></ol><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Telewizor\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
 },
 {
 "title": "Miejsce parkingowe w garażu podziemnym",
-"html": "<p>Pilot do bramy garażowej znajduje się w apartamencie. Po otwarciu bramy zjedź na poziom -2.</p><p>Miejsce parkingowe numer 50.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Garaż\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
+"html": "<p>Pilot do bramy garażowej znajduje się w apartamencie. Otwórz bramę i zjedź na poziom -2.</p><p>Miejsce parkingowe nr 50 jest do Twojej dyspozycji.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Garaż\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Pilot\"></div>"
 },
 {
 "title": "Gdzie wynieść śmieci",
-"html": "<p>Śmieci posegregowane wynieś do pomieszczenia ze śmietnikami przy wjeździe do garażu.</p><p>Wyjdź z budynku, skręć w lewo. Wejście otwierane kluczem otrzymanym od zespołu Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Śmietnik\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Wejście\"></div>"
+"html": "<p>Posegregowane śmieci wynieś do pomieszczenia ze śmietnikami przy wjeździe do garażu.</p><p>Wyjdź z budynku, skręć w lewo i otwórz drzwi kluczem od zespołu Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Śmietnik\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Wejście\"></div>"
 },
 {
 "title": "Instrukcja obsługi bezpieczników elektrycznych",
-"html": "<p>Jeśli sprzęt nie działa (np. kuchenka, klimatyzacja), przyczyną mogą być wyłączone bezpieczniki.</p><p>Otwórz szafę przy wejściu do mieszkania i upewnij się, że wszystkie bezpieczniki są w pozycji włączonej (do góry).</p><p>Bez ryzyka porażenia prądem. Jeśli bezpiecznik wyłącza się ponownie, może to oznaczać awarię. Kontakt z zespołem Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Bezpieczniki\"><img src=\"/assets/photos/ac2.jpg\" class=\"thumb\" alt=\"Tablica\"></div>"
-} ],
+"html": "<p>Jeśli sprzęt (np. kuchenka, klimatyzacja) nie działa, sprawdź bezpieczniki.</p><p>Otwórz szafę przy wejściu i upewnij się, że wszystkie bezpieczniki są w pozycji włączonej (do góry).</p><p>Nie ma ryzyka porażenia prądem. Jeśli bezpiecznik wyłącza się ponownie, może to oznaczać awarię – skontaktuj się z zespołem Renters.</p><div class=\"image-grid\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Bezpieczniki\"><img src=\"/assets/photos/ac1.jpg\" class=\"thumb\" alt=\"Tablica\"></div>"
+},
+{
+"title": "Co zobaczyć w Warszawie",
+"html": "<p>Warszawa oferuje wiele atrakcji dla każdego. Oto propozycje:</p><p><strong>Klasyka Warszawy — must see</strong></p><ul>
+<li>Stare Miasto – rynek, Zamek Królewski, kolumna Zygmunta, kolorowe kamieniczki, katedra św. Jana</li>
+<li>Plac Zamkowy i Krakowskie Przedmieście – najbardziej reprezentacyjna ulica miasta</li>
+<li>Łazienki Królewskie – park, Pałac na Wyspie, pomnik Chopina, pawie i wiewiórki</li>
+<li>Multimedialny Park Fontann – widowiskowe pokazy światła, wody i muzyki (maj–wrzesień, weekendy)</li>
+<li>Pałac w Wilanowie – „polski Wersal” z pięknymi ogrodami</li>
+<li>Plac Zbawiciela – kawiarnie i miejski klimat</li>
+<li>Varso Tower – najwyższy taras widokowy w UE</li>
+<li>Pałac Kultury i Nauki – taras widokowy z panoramą miasta</li>
+</ul><p><strong>Relaks, natura i spacer</strong></p><ul>
+<li>Bulwary Wiślane – ścieżki, leżaki, bary nad rzeką, klimatyczne miejsca na zachód słońca</li>
+<li>Ogród Saski i Plac Piłsudskiego – spokojna przestrzeń w centrum miasta</li>
+<li>Ogród na dachu Biblioteki Uniwersyteckiej (BUW) – widok na Wisłę, Stadion Narodowy i mosty</li>
+<li>Ogród Botaniczny PAN lub UW – oaza zieleni w mieście</li>
+<li>Zoo Warszawskie – wiele gatunków zwierząt w zielonej scenerii</li>
+</ul><p><strong>Historia, kultura, nauka, sztuka</strong></p><ul>
+<li>Muzeum Powstania Warszawskiego – nowoczesne, wzruszające i dobrze zorganizowane</li>
+<li>Centrum Nauki Kopernik – dla dorosłych i dzieci, interaktywna nauka</li>
+<li>Muzeum Narodowe – sztuka polska i europejska</li>
+<li>Muzeum Fryderyka Chopina – interaktywne i kameralne</li>
+<li>POLIN – Muzeum Historii Żydów Polskich</li>
+<li>Muzeum Neonów – kolorowa historia PRL-u</li>
+</ul><p><strong>Foodhalle i kulinarne przestrzenie</strong></p><ul>
+<li>Browary Warszawskie – nowoczesna przestrzeń gastronomiczna z piwnymi tradycjami</li>
+<li>Fabryka Norblina – industrialny klimat, wiele restauracji pod jednym dachem</li>
+<li>Hala Koszyki – odrestaurowany foodhall z kuchniami z całego świata</li>
+<li>Elektrownia Powiśle – design, restauracje, bary, concept store’y</li>
+<li>Centrum Praskie Koneser – galerie, rzemieślnicze sklepy, modne knajpki</li>
+<li>Hala Gwardii – jedzenie, lokalne produkty, targ i koncerty</li>
+<li>Nocny Market (maj–wrzesień) – street food z całego świata na dawnym peronie dworca Warszawa Główna</li>
+</ul>"
+}],
     "de": [{
             "title": "Wie benutzt man die Klimaanlage?",
             "html": "<p>Die Klimaanlage befindet sich im Wohnzimmer. Die Fernbedienung liegt auf dem Couchtisch.</p><p><strong>Einschalten:</strong> Drücken Sie die rote Einschalttaste.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Fernbedienung\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Klimaanlage\"></div><p>Stellen Sie die Temperatur auf 20–24°C ein.</p>"
