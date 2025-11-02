@@ -16,7 +16,10 @@ const urlsToCache = [
   '/assets/flags/nl.png',
   '/assets/flags/cz.png',
   '/assets/flags/sk.png',
-  '/assets/flags/uk.png'
+  '/assets/flags/ua.png',
+  // CUSTOM FAVICONS
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
