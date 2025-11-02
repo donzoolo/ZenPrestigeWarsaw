@@ -22,11 +22,18 @@
   <header>
     <button class="theme-toggle" id="theme-toggle"><i class="ti ti-moon"></i></button>
     <h1 id="page-title">Welcome to Your Apartment</h1>
-    <div class="lang-switcher">
-      <img src="https://flagcdn.com/gb.svg" alt="EN" class="flag active" data-lang="en">
-      <img src="https://flagcdn.com/pl.svg" alt="PL" class="flag" data-lang="pl">
-      <img src="https://flagcdn.com/de.svg" alt="DE" class="flag" data-lang="de">
-    </div>
+	<div class="lang-switcher">
+	  <img src="assets/flags/en.svg" alt="EN" class="flag active" data-lang="en">
+	  <img src="assets/flags/pl.svg" alt="PL" class="flag" data-lang="pl">
+	  <img src="assets/flags/de.svg" alt="DE" class="flag" data-lang="de">
+	  <img src="assets/flags/fr.svg" alt="FR" class="flag" data-lang="fr">
+	  <img src="assets/flags/it.svg" alt="IT" class="flag" data-lang="it">
+	  <img src="assets/flags/es.svg" alt="ES" class="flag" data-lang="es">
+	  <img src="assets/flags/nl.svg" alt="NL" class="flag" data-lang="nl">
+	  <img src="assets/flags/cs.svg" alt="CS" class="flag" data-lang="cs">
+	  <img src="assets/flags/sk.svg" alt="SK" class="flag" data-lang="sk">
+	  <img src="assets/flags/uk.svg" alt="UK" class="flag" data-lang="uk">
+	</div>
   </header>
 
   <div class="search-bar">
@@ -73,21 +80,68 @@
   let isUpdating = false;
 
   /* ---------- TRANSLATIONS ---------- */
-  const translations = {
-    searchPlaceholder: {en:"Search instructions…",pl:"Szukaj instrukcji…",de:"Anweisungen suchen…"},
-    contactTitle:      {en:"Contact Us",pl:"Skontaktuj się z nami",de:"Kontaktieren Sie uns"},
-    contactIssues: {
-      en:"For any issues with the apartment, please contact: <strong>Jan Kowalski</strong> at <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> or phone <a href='tel:+48123456789'>+48 123 456 789</a>",
-      pl:"W razie problemów z apartamentem: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> lub <a href='tel:+48123456789'>+48 123 456 789</a>",
-      de:"Bei Problemen mit der Wohnung: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> oder <a href='tel:+48123456789'>+48 123 456 789</a>"
-    },
-    contactSuggestions: {
-      en:"For suggestions about the apartment or this guide, email us at <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
-      pl:"Masz sugestie? Napisz na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
-      de:"Vorschläge? Schreiben Sie an <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>"
-    },
-    noResults: {en:"No instructions found. Try another keyword.",pl:"Nie znaleziono instrukcji. Spróbuj innego słowa.",de:"Keine Anweisungen gefunden. Versuchen Sie ein anderes Wort."}
-  };
+const translations = {
+  searchPlaceholder: {
+    en: "Search instructions…",
+    pl: "Szukaj instrukcji…",
+    de: "Anweisungen suchen…",
+    fr: "Rechercher des instructions…",
+    it: "Cerca istruzioni…",
+    es: "Buscar instrucciones…",
+    nl: "Zoek instructies…",
+    cs: "Hledat pokyny…",
+    sk: "Hľadať inštrukcie…",
+    uk: "Шукати інструкції…"
+  },
+  contactTitle: {
+    en: "Contact Us",
+    pl: "Skontaktuj się z nami",
+    de: "Kontaktieren Sie uns",
+    fr: "Contactez-nous",
+    it: "Contattaci",
+    es: "Contáctenos",
+    nl: "Neem contact op",
+    cs: "Kontaktujte nás",
+    sk: "Kontaktujte nás",
+    uk: "Зв'яжіться з нами"
+  },
+  contactIssues: {
+    en: "For any issues with the apartment, please contact: <strong>Jan Kowalski</strong> at <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> or phone <a href='tel:+48123456789'>+48 123 456 789</a>",
+    pl: "W razie problemów z apartamentem: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> lub <a href='tel:+48123456789'>+48 123 456 789</a>",
+    de: "Bei Problemen mit der Wohnung: <strong>Jan Kowalski</strong> – <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> oder <a href='tel:+48123456789'>+48 123 456 789</a>",
+    fr: "En cas de problème avec l'appartement, contactez : <strong>Jan Kowalski</strong> à <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> ou au <a href='tel:+48123456789'>+48 123 456 789</a>",
+    it: "Per qualsiasi problema con l'appartamento, contatta: <strong>Jan Kowalski</strong> a <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> o al <a href='tel:+48123456789'>+48 123 456 789</a>",
+    es: "Para cualquier problema con el apartamento, contacta con: <strong>Jan Kowalski</strong> en <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> o al <a href='tel:+48123456789'>+48 123 456 789</a>",
+    nl: "Bij problemen met het appartement, neem contact op met: <strong>Jan Kowalski</strong> via <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> of telefoon <a href='tel:+48123456789'>+48 123 456 789</a>",
+    cs: "V případě problémů s apartmánem kontaktujte: <strong>Jan Kowalski</strong> na <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> nebo telefonicky <a href='tel:+48123456789'>+48 123 456 789</a>",
+    sk: "V prípade problémov s apartmánom kontaktujte: <strong>Jan Kowalski</strong> na <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> alebo telefonicky <a href='tel:+48123456789'>+48 123 456 789</a>",
+    uk: "У разі проблем з апартаментами звертайтеся до: <strong>Jan Kowalski</strong> за адресою <a href='mailto:jan@zenprestigewarsaw.pl'>jan@zenprestigewarsaw.pl</a> або за телефоном <a href='tel:+48123456789'>+48 123 456 789</a>"
+  },
+  contactSuggestions: {
+    en: "For suggestions about the apartment or this guide, email us at <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    pl: "Masz sugestie? Napisz na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    de: "Vorschläge? Schreiben Sie an <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    fr: "Des suggestions ? Écrivez-nous à <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    it: "Hai suggerimenti? Scrivici a <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    es: "¿Sugerencias? Escríbenos a <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    nl: "Suggesties? Stuur een e-mail naar <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    cs: "Máte návrhy? Napište nám na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    sk: "Máte návrhy? Napíšte nám na <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>",
+    uk: "Є пропозиції? Напишіть нам на <a href='mailto:myapartment@gmail.com'>myapartment@gmail.com</a>"
+  },
+  noResults: {
+    en: "No instructions found. Try another keyword.",
+    pl: "Nie znaleziono instrukcji. Spróbuj innego słowa.",
+    de: "Keine Anweisungen gefunden. Versuchen Sie ein anderes Wort.",
+    fr: "Aucune instruction trouvée. Essayez un autre mot-clé.",
+    it: "Nessuna istruzione trovata. Prova un'altra parola chiave.",
+    es: "No se encontraron instrucciones. Prueba otra palabra clave.",
+    nl: "Geen instructies gevonden. Probeer een ander trefwoord.",
+    cs: "Nebyly nalezeny žádné pokyny. Zkuste jiné klíčové slovo.",
+    sk: "Neboli nájdené žiadne inštrukcie. Skúste iné kľúčové slovo.",
+    uk: "Інструкції не знайдено. Спробуйте інше ключове слово."
+  }
+};
 
   /* ---------- LOAD CONTENT ---------- */
   async function loadContent() {
@@ -126,14 +180,14 @@
     }
   }
 
-  function updateUI() {
-    pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
-    searchInput.placeholder = translations.searchPlaceholder[currentLang];
-    noResults.textContent   = translations.noResults[currentLang];
-    contactTitle.innerHTML  = `<i class="ti ti-message-circle"></i> ${translations.contactTitle[currentLang]}`;
-    contactIssues.innerHTML = translations.contactIssues[currentLang];
-    contactSuggestions.innerHTML = translations.contactSuggestions[currentLang];
-  }
+	function updateUI() {
+	  pageTitle.textContent = content.titles?.[currentLang] || translations.contactTitle[currentLang] || "Welcome";
+	  searchInput.placeholder = translations.searchPlaceholder[currentLang] || "Search…";
+	  noResults.textContent   = translations.noResults[currentLang] || "No results.";
+	  contactTitle.innerHTML  = `<i class="ti ti-message-circle"></i> ${translations.contactTitle[currentLang] || "Contact Us"}`;
+	  contactIssues.innerHTML = translations.contactIssues[currentLang] || translations.contactIssues.en;
+	  contactSuggestions.innerHTML = translations.contactSuggestions[currentLang] || translations.contactSuggestions.en;
+	}
 
   /* ---------- RENDER PANELS ---------- */
   function renderPanels(list) {

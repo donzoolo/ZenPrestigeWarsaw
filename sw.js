@@ -4,10 +4,19 @@ const urlsToCache = [
   '/index.html',
   '/content.json',
   '/manifest.json',
+  '/css/style.css',
   'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css',
-  'https://flagcdn.com/gb.svg',
-  'https://flagcdn.com/pl.svg',
-  'https://flagcdn.com/de.svg'
+  // Local flags
+  '/assets/flags/en.svg',
+  '/assets/flags/pl.svg',
+  '/assets/flags/de.svg',
+  '/assets/flags/fr.svg',
+  '/assets/flags/it.svg',
+  '/assets/flags/es.svg',
+  '/assets/flags/nl.svg',
+  '/assets/flags/cs.svg',
+  '/assets/flags/sk.svg',
+  '/assets/flags/uk.svg'
 ];
 
 self.addEventListener('install', event => {

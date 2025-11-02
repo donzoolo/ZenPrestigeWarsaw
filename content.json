@@ -1,49 +1,124 @@
 {
-  "titles": {
-    "en": "Welcome to Your Apartment",
-    "pl": "Witamy w Twoim Apartamencie",
-    "de": "Willkommen in Ihrer Wohnung"
-  },
-  "en": [
-    {
-      "title": "How to use Air Conditioning 6",
-      "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+    "titles": {
+        "en": "Welcome to Your Apartment",
+        "pl": "Witamy w Twoim Apartamencie",
+        "de": "Willkommen in Ihrer Wohnung",
+        "fr": "Bienvenue dans votre appartement",
+        "it": "Benvenuti nel vostro appartamento",
+        "es": "Bienvenido a su apartamento",
+        "nl": "Welkom in uw appartement",
+        "cs": "Vítejte ve svém apartmánu",
+        "sk": "Vitajte vo svojom apartmáne",
+        "uk": "Ласкаво просимо до вашої квартири"
     },
-    {
-      "title": "How to use TV and Netflix",
-      "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
-    },
-    {
-      "title": "Wi-Fi & Internet",
-      "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
-    }
-  ],
-  "pl": [
-    {
-      "title": "Jak używać klimatyzacji",
-      "html": "<p>Klimatyzacja znajduje się w salonie. Pilot leży na stoliku kawowym.</p><p><strong>Włączenie:</strong> Naciśnij czerwony przycisk zasilania.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Pilot\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Jednostka\"></div><p>Ustaw temperaturę 20–24°C dla komfortu.</p>"
-    },
-    {
-      "title": "Jak używać TV i Netflixa",
-      "html": "<p>Pilot do TV leży obok telewizora. Netflix jest zainstalowany.</p><ol><li>Włącz TV czarnym pilotem</li><li>Wybierz HDMI 1</li><li>Użyj srebrnego pilota do Netflixa</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
-    },
-    {
-      "title": "Wi-Fi i Internet",
-      "html": "<p>Sieć: <strong>Apartment_Guest</strong></p><p>Hasło: <strong>Summer2025!</strong></p><p>Prędkość: 100 Mbps. Działa we wszystkich pokojach.</p>"
-    }
-  ],
-  "de": [
-    {
-      "title": "Wie benutzt man die Klimaanlage?",
-      "html": "<p>Die Klimaanlage befindet sich im Wohnzimmer. Die Fernbedienung liegt auf dem Couchtisch.</p><p><strong>Einschalten:</strong> Drücken Sie die rote Einschalttaste.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Fernbedienung\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Klimaanlage\"></div><p>Stellen Sie die Temperatur auf 20–24°C ein.</p>"
-    },
-    {
-      "title": "Wie benutzt man TV und Netflix?",
-      "html": "<p>Die TV-Fernbedienung liegt neben dem Fernseher. Netflix ist vorinstalliert.</p><ol><li>Fernseher mit schwarzer Fernbedienung einschalten</li><li>HDMI 1 auswählen</li><li>Silberne Fernbedienung für Netflix verwenden</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
-    },
-    {
-      "title": "WLAN & Internet",
-      "html": "<p>Netzwerk: <strong>Apartment_Guest</strong></p><p>Passwort: <strong>Summer2025!</strong></p><p>Geschwindigkeit: 100 MBit/s. Funktioniert in allen Räumen.</p>"
-    }
-  ]
+    "en": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "pl": [{
+            "title": "Jak używać klimatyzacji",
+            "html": "<p>Klimatyzacja znajduje się w salonie. Pilot leży na stoliku kawowym.</p><p><strong>Włączenie:</strong> Naciśnij czerwony przycisk zasilania.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Pilot\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Jednostka\"></div><p>Ustaw temperaturę 20–24°C dla komfortu.</p>"
+        }, {
+            "title": "Jak używać TV i Netflixa",
+            "html": "<p>Pilot do TV leży obok telewizora. Netflix jest zainstalowany.</p><ol><li>Włącz TV czarnym pilotem</li><li>Wybierz HDMI 1</li><li>Użyj srebrnego pilota do Netflixa</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi i Internet",
+            "html": "<p>Sieć: <strong>Apartment_Guest</strong></p><p>Hasło: <strong>Summer2025!</strong></p><p>Prędkość: 100 Mbps. Działa we wszystkich pokojach.</p>"
+        }
+    ],
+    "de": [{
+            "title": "Wie benutzt man die Klimaanlage?",
+            "html": "<p>Die Klimaanlage befindet sich im Wohnzimmer. Die Fernbedienung liegt auf dem Couchtisch.</p><p><strong>Einschalten:</strong> Drücken Sie die rote Einschalttaste.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"Fernbedienung\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"Klimaanlage\"></div><p>Stellen Sie die Temperatur auf 20–24°C ein.</p>"
+        }, {
+            "title": "Wie benutzt man TV und Netflix?",
+            "html": "<p>Die TV-Fernbedienung liegt neben dem Fernseher. Netflix ist vorinstalliert.</p><ol><li>Fernseher mit schwarzer Fernbedienung einschalten</li><li>HDMI 1 auswählen</li><li>Silberne Fernbedienung für Netflix verwenden</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "WLAN & Internet",
+            "html": "<p>Netzwerk: <strong>Apartment_Guest</strong></p><p>Passwort: <strong>Summer2025!</strong></p><p>Geschwindigkeit: 100 MBit/s. Funktioniert in allen Räumen.</p>"
+        }
+    ],
+    "fr": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "it": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "es": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "nl": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "cs": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "sk": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ],
+    "uk": [{
+            "title": "How to use Air Conditioning 6",
+            "html": "<p>The air conditioning is located in the living room. Use the remote on the coffee table.</p><p><strong>To turn on:</strong> Press the red power button.</p><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1582719478250-c89ccc601aa4?w=400\" class=\"thumb\" alt=\"AC Remote\"><img src=\"https://images.unsplash.com/photo-1581092588570-9d4752a15e21?w=400\" class=\"thumb\" alt=\"AC Unit\"></div><p>Set temperature between 20–24°C for comfort.</p>"
+        }, {
+            "title": "How to use TV and Netflix",
+            "html": "<p>The TV remote is next to the TV. Netflix is pre-installed.</p><ol><li>Turn on TV with black remote</li><li>Select HDMI 1</li><li>Use silver remote to open Netflix</li><li>Login: <code>guest@apt.com</code> / <code>welcome123</code></li></ol><div class=\"image-grid\"><img src=\"https://images.unsplash.com/photo-1593359677879-a4bb40607bc1?w=400\" class=\"thumb\" alt=\"TV\"><img src=\"https://images.unsplash.com/photo-1511512578047-dfd1e68b8f0f?w=400\" class=\"thumb\" alt=\"Netflix\"></div>"
+        }, {
+            "title": "Wi-Fi & Internet",
+            "html": "<p>Network: <strong>Apartment_Guest</strong></p><p>Password: <strong>Summer2025!</strong></p><p>Speed: 100 Mbps. Works in all rooms.</p>"
+        }
+    ]
 }
