@@ -133,3 +133,9 @@ h1 { font-size:1.8rem; font-weight:500; color:var(--accent); margin-bottom:.5rem
     margin: 1.6rem 0 1rem 0;
   }
 }
+
+.panel-text li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  padding-left: 0.3rem;
+}
