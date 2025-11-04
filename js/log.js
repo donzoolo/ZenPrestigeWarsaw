@@ -1,1 +1,0 @@
-const GITHUB_TOKEN = '__SECRET_TOKEN__';
