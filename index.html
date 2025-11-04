@@ -300,5 +300,48 @@
   applyTheme();
   loadContent();
 </script>
+<script src="js/log.js"></script>
+<script>
+/* ========== ANALITYKA — visits.log w Twoim repo ========== */
+async function logVisit(action = 'visit', panelTitle = '') {
+  try {
+    // 1. Pobierz IP + kraj (darmowe)
+    const ip = await fetch('https://api.ipify.org').then(r => r.text());
+    const geo = await fetch(`https://ipapi.co/${ip}/json/`).then(r => r.json());
+
+    // 2. Przygotuj nową linijkę
+    const now = new Date().toISOString().replace('T', ' ').split('.')[0];
+    const line = `${now} | ${ip} | ${geo.country_name || '?'} | ${geo.city || '?'} | ${action} | ${panelTitle}\n`;
+
+    // 3. Pobierz obecny plik visits.log
+    const meta = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/contents/visits.log');
+    const data = await meta.json();
+
+    // 4. Wyślij aktualizację
+    await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/contents/visits.log', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + GITHUB_TOKEN,
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: `log: ${action} ${panelTitle || 'page'}`,
+        content: btoa(unescape(encodeURIComponent(atob(data.content) + line))),
+        sha: data.sha,
+        branch: 'main'
+      })
+    });
+  } catch (e) {
+    console.log('Log skipped (offline/no token)', e);
+  }
+}
+  if (typeof GITHUB_TOKEN !== 'undefined') {
+    logVisit('visit');
+    document.addEventListener('click', e => {
+      const p = e.target.closest('.panel-title');
+      if (p) logVisit('panel_open', p.textContent.trim());
+    });
+  }
+</script>
 </body>
 </html>

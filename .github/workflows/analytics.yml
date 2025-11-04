@@ -1,0 +1,22 @@
+name: Inject analytics token
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inject secret token
+        env:
+          TOKEN: ${{ secrets.VISIT_LOG_TOKEN }}
+        run: |
+          sed -i "s/__SECRET_TOKEN__/$TOKEN/" js/log.js
+      - name: Commit & push
+        run: |
+          git config user.name "Analytics Bot"
+          git config user.email "bot@zenprestigewarsaw.pl"
+          git add js/log.js
+          git commit -m "chore: inject token" || exit 0
+          git push
