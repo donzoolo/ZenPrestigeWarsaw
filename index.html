@@ -172,7 +172,7 @@
       content = await res.json();
     } catch (err) {
       console.warn('Offline:', err);
-      const cache = await caches.open('apartment-guide-v2');
+      const cache = await caches.open('apartment-guide-v5');
       const cached = await cache.match('content.json');
       if (cached) content = await cached.json();
       else {
