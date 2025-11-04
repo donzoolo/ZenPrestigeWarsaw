@@ -22,20 +22,20 @@
 
 <div class="container">
   <header>
-    <button class="theme-toggle" id="theme-toggle"><i class="ti ti-moon"></i></button>
+    <button class="theme-toggle" id="theme-toggle">Moon</button>
     <h1 id="page-title">Welcome to Zen Prestige Warsaw</h1>
-	<div class="lang-switcher">
-	  <img src="assets/flags/gb.png" alt="GB" class="flag active" data-lang="en">
-	  <img src="assets/flags/pl.png" alt="PL" class="flag" data-lang="pl">
-	  <img src="assets/flags/de.png" alt="DE" class="flag" data-lang="de">
-	  <img src="assets/flags/fr.png" alt="FR" class="flag" data-lang="fr">
-	  <img src="assets/flags/it.png" alt="IT" class="flag" data-lang="it">
-	  <img src="assets/flags/es.png" alt="ES" class="flag" data-lang="es">
-	  <img src="assets/flags/nl.png" alt="NL" class="flag" data-lang="nl">
-	  <img src="assets/flags/cz.png" alt="CZ" class="flag" data-lang="cz">
-	  <img src="assets/flags/sk.png" alt="SK" class="flag" data-lang="sk">
-	  <img src="assets/flags/ua.png" alt="UA" class="flag" data-lang="ua">
-	</div>
+    <div class="lang-switcher">
+      <img src="assets/flags/gb.png" alt="GB" class="flag active" data-lang="en">
+      <img src="assets/flags/pl.png" alt="PL" class="flag" data-lang="pl">
+      <img src="assets/flags/de.png" alt="DE" class="flag" data-lang="de">
+      <img src="assets/flags/fr.png" alt="FR" class="flag" data-lang="fr">
+      <img src="assets/flags/it.png" alt="IT" class="flag" data-lang="it">
+      <img src="assets/flags/es.png" alt="ES" class="flag" data-lang="es">
+      <img src="assets/flags/nl.png" alt="NL" class="flag" data-lang="nl">
+      <img src="assets/flags/cz.png" alt="CZ" class="flag" data-lang="cz">
+      <img src="assets/flags/sk.png" alt="SK" class="flag" data-lang="sk">
+      <img src="assets/flags/ua.png" alt="UA" class="flag" data-lang="ua">
+    </div>
   </header>
 
   <div class="search-bar">
@@ -43,13 +43,12 @@
   </div>
 
   <main id="panels-container"><div class="loading">Loading guide…</div></main>
-
   <div class="no-results" id="no-results"></div>
 
   <div class="contact-section" id="contact-section">
-    <h3 id="contact-title"><i class="ti ti-message-circle"></i> Contact Us</h3>
-    <div class="contact-item" id="contact-issues"><i class="ti ti-alert-triangle"></i><span></span></div>
-    <div class="contact-item" id="contact-suggestions"><i class="ti ti-bulb"></i><span></span></div>
+    <h3 id="contact-title">Contact Us</h3>
+    <div class="contact-item" id="contact-issues">Issues<span></span></div>
+    <div class="contact-item" id="contact-suggestions">Suggestions<span></span></div>
   </div>
 
   <div id="update-banner">
@@ -57,29 +56,97 @@
   </div>
 </div>
 
-<div class="lightbox" id="lightbox"><img src="" alt="Enlarged" id="lightbox-img"></div>
+<!-- LIGHTBOX GALLERY -->
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-prev" id="lightbox-prev">Previous</button>
+    <img src="" alt="" id="lightbox-img" class="lightbox-img">
+    <button class="lightbox-next" id="lightbox-next">Next</button>
+    <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+    <button class="lightbox-close" id="lightbox-close">Close</button>
+  </div>
+</div>
 
 <script>
   /* ---------- DOM ---------- */
-  const panelsContainer = document.getElementById('panels-container');
-  const pageTitle       = document.getElementById('page-title');
-  const searchInput     = document.getElementById('search');
-  const noResults       = document.getElementById('no-results');
-  const flags           = document.querySelectorAll('.flag');
-  const lightbox        = document.getElementById('lightbox');
-  const lightboxImg     = document.getElementById('lightbox-img');
-  const themeToggle     = document.getElementById('theme-toggle');
-  const contactIssues   = document.getElementById('contact-issues').querySelector('span');
-  const contactSuggestions = document.getElementById('contact-suggestions').querySelector('span');
-  const contactTitle    = document.getElementById('contact-title');
+  const DOM = {
+    panelsContainer: document.getElementById('panels-container'),
+    pageTitle: document.getElementById('page-title'),
+    searchInput: document.getElementById('search'),
+    noResults: document.getElementById('no-results'),
+    flags: document.querySelectorAll('.flag'),
+    lightbox: document.getElementById('lightbox'),
+    lightboxImg: document.getElementById('lightbox-img'),
+    lightboxPrev: document.getElementById('lightbox-prev'),
+    lightboxNext: document.getElementById('lightbox-next'),
+    lightboxCounter: document.getElementById('lightbox-counter'),
+    lightboxClose: document.getElementById('lightbox-close'),
+    themeToggle: document.getElementById('theme-toggle'),
+    contactIssues: document.getElementById('contact-issues').querySelector('span'),
+    contactSuggestions: document.getElementById('contact-suggestions').querySelector('span'),
+    contactTitle: document.getElementById('contact-title'),
+    updateBanner: document.getElementById('update-banner')
+  };
 
   /* ---------- STATE ---------- */
   let content = {};
   let currentLang = 'en';
-  let allPanels   = [];
+  let allPanels = [];
   let currentTheme = localStorage.getItem('theme') || 'light';
   let newWorker;
   let isUpdating = false;
+
+  // Lightbox Gallery
+  let currentGallery = [];
+  let currentIndex = 0;
+
+  /* ---------- LIGHTBOX GALLERY ---------- */
+  function openLightbox(images, startIndex = 0) {
+    currentGallery = images;
+    currentIndex = startIndex;
+    showImage();
+    DOM.lightbox.classList.add('active');
+  }
+
+  function showImage() {
+    const img = currentGallery[currentIndex];
+    DOM.lightboxImg.src = img.src;
+    DOM.lightboxImg.alt = img.alt || 'Photo';
+    DOM.lightboxCounter.textContent = `${currentIndex + 1} / ${currentGallery.length}`;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % currentGallery.length;
+    showImage();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+    showImage();
+  }
+
+  // Swipe
+  let touchStartX = 0;
+  DOM.lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  DOM.lightbox.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? nextImage() : prevImage();
+  });
+
+  // Click left/right on image
+  DOM.lightboxImg.addEventListener('click', e => {
+    const rect = DOM.lightboxImg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    x < rect.width / 2 ? prevImage() : nextImage();
+  });
+
+  // Buttons
+  DOM.lightboxPrev.addEventListener('click', prevImage);
+  DOM.lightboxNext.addEventListener('click', nextImage);
+  DOM.lightboxClose.addEventListener('click', () => DOM.lightbox.classList.remove('active'));
+  DOM.lightbox.addEventListener('click', e => {
+    if (e.target === DOM.lightbox) DOM.lightbox.classList.remove('active');
+  });
 
   /* ---------- LOAD CONTENT ---------- */
   async function loadContent() {
@@ -88,12 +155,12 @@
       if (!res.ok) throw new Error('Not found');
       content = await res.json();
     } catch (err) {
-      console.warn('Offline / error:', err);
+      console.warn('Offline:', err);
       const cache = await caches.open('apartment-guide-v2');
       const cached = await cache.match('content.json');
       if (cached) content = await cached.json();
       else {
-        panelsContainer.innerHTML = `<div style="color:red;padding:2rem;">No cached content. Connect to internet first.</div>`;
+        DOM.panelsContainer.innerHTML = `<div style="color:red;padding:2rem;">No cached content. Connect to internet first.</div>`;
         return;
       }
     }
@@ -102,51 +169,44 @@
     updateUI();
   }
 
-  async function loadVersion() {
-    try {
-      const res = await fetch('https://api.github.com/repos/donzoolo/ZenPrestigeWarsaw/tags?per_page=1');
-      if (!res.ok) throw new Error('API failed');
-      const tags = await res.json();
-      if (!tags || tags.length === 0) throw new Error('No tags');
-      const latest = tags[0];
-      const version = latest.name;
-      const date = new Date(latest.commit?.committer?.date || Date.now())
-        .toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-      console.log('Version:', version, '| Updated:', date);
-    } catch (err) {
-      console.warn('Version fetch failed (offline/no tags):', err.message);
-    }
+  function updateUI() {
+    const ui = content.ui || {};
+    const t = (key, fallback) => (ui[key] && ui[key][currentLang]) || fallback || "";
+
+    DOM.pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
+    DOM.searchInput.placeholder = t("searchPlaceholder", "Search…");
+    DOM.noResults.textContent = t("noResults", "No results.");
+    DOM.contactTitle.innerHTML = `Contact Us ${t("contactTitle", "Contact Us")}`;
+    DOM.contactIssues.innerHTML = t("contactIssues", "Contact support.");
+    DOM.contactSuggestions.innerHTML = t("contactSuggestions", "Send feedback.");
   }
-
-	function updateUI() {
-	  const ui = content.ui || {};
-	  const t = (key, fallback) => {
-		return (ui[key] && ui[key][currentLang]) || fallback || "";
-	  };
-
-	  pageTitle.textContent = content.titles?.[currentLang] || "Welcome";
-	  searchInput.placeholder = t("searchPlaceholder", "Search…");
-	  noResults.textContent = t("noResults", "No results.");
-	  contactTitle.innerHTML = `<i class="ti ti-message-circle"></i> ${t("contactTitle", "Contact Us")}`;
-	  contactIssues.innerHTML = t("contactIssues", "Contact support.");
-	  contactSuggestions.innerHTML = t("contactSuggestions", "Send feedback.");
-	}
 
   /* ---------- RENDER PANELS ---------- */
   function renderPanels(list) {
-    panelsContainer.innerHTML = '';
-    if (!list.length) { noResults.style.display = 'block'; return; }
-    noResults.style.display = 'none';
+    DOM.panelsContainer.innerHTML = '';
+    if (!list.length) { DOM.noResults.style.display = 'block'; return; }
+    DOM.noResults.style.display = 'none';
+
     list.forEach(p => {
       const div = document.createElement('div');
       div.className = 'panel visible';
-      div.innerHTML = `<div class="panel-title">${p.title}</div>
-                       <div class="panel-content"><div class="panel-text">${p.html}</div></div>`;
-      panelsContainer.appendChild(div);
-      div.querySelector('.panel-title').addEventListener('click',()=>div.classList.toggle('active'));
-      div.querySelectorAll('.thumb').forEach(img=>img.addEventListener('click',()=>{
-        lightboxImg.src = img.src; lightbox.classList.add('active');
-      }));
+      div.innerHTML = `
+        <div class="panel-title">${p.title}</div>
+        <div class="panel-content"><div class="panel-text">${p.html}</div></div>
+      `;
+      DOM.panelsContainer.appendChild(div);
+
+      div.querySelector('.panel-title').addEventListener('click', () => div.classList.toggle('active'));
+
+      // Gallery support
+      const thumbs = div.querySelectorAll('.thumb');
+      thumbs.forEach((img, i) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', () => {
+          const gallery = Array.from(thumbs);
+          openLightbox(gallery, i);
+        });
+      });
     });
   }
 
@@ -154,72 +214,65 @@
   function filterPanels(q) {
     if (!q.trim()) return renderPanels(allPanels);
     const lower = q.toLowerCase();
-    const matches = allPanels.filter(p=>p.title.toLowerCase().includes(lower)||p.html.toLowerCase().includes(lower));
+    const matches = allPanels.filter(p =>
+      p.title.toLowerCase().includes(lower) || p.html.toLowerCase().includes(lower)
+    );
     renderPanels(matches);
   }
-  flags.forEach(f=>f.addEventListener('click',()=>{
+
+  DOM.flags.forEach(f => f.addEventListener('click', () => {
     currentLang = f.dataset.lang;
-    flags.forEach(x=>x.classList.remove('active'));
+    DOM.flags.forEach(x => x.classList.remove('active'));
     f.classList.add('active');
-    allPanels = content[currentLang]||content.en;
-    updateUI(); filterPanels(searchInput.value);
+    allPanels = content[currentLang] || content.en;
+    updateUI();
+    filterPanels(DOM.searchInput.value);
   }));
-  searchInput.addEventListener('input',()=>filterPanels(searchInput.value));
-  lightbox.addEventListener('click',()=>lightbox.classList.remove('active'));
+
+  DOM.searchInput.addEventListener('input', () => filterPanels(DOM.searchInput.value));
 
   /* ---------- THEME ---------- */
-  function applyTheme(){
-    document.documentElement.setAttribute('data-theme',currentTheme);
-    themeToggle.innerHTML = currentTheme==='light' ? '<i class="ti ti-moon"></i>' : '<i class="ti ti-sun"></i>';
+  function applyTheme() {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    DOM.themeToggle.innerHTML = currentTheme === 'light' ? 'Moon' : 'Sun';
   }
-  themeToggle.addEventListener('click',()=>{
-    currentTheme = currentTheme==='light'?'dark':'light';
-    localStorage.setItem('theme',currentTheme); applyTheme();
+  DOM.themeToggle.addEventListener('click', () => {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', currentTheme);
+    applyTheme();
   });
 
-  /* ---------- SERVICE WORKER (AUTO-UPDATE) ---------- */
+  /* ---------- SERVICE WORKER ---------- */
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js?v=' + Date.now())
         .then(reg => {
-          console.log('SW registered', reg);
           reg.update();
           reg.onupdatefound = () => {
             newWorker = reg.installing;
             newWorker.onstatechange = () => {
               if (newWorker.state === 'installed' && navigator.serviceWorker.controller && !isUpdating) {
-                showUpdateUI();
+                DOM.updateBanner.style.display = 'block';
               }
             };
           };
-        })
-        .catch(err => console.error('SW failed:', err));
+        });
     });
 
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (isUpdating) {
-        console.log('Update applied — reloading');
-        window.location.reload();
-      }
+      if (isUpdating) window.location.reload();
     });
   }
 
-  function showUpdateUI() {
-    const banner = document.getElementById('update-banner');
-    if (banner) banner.style.display = 'block';
-  }
-
-  function updatePWA() {
+  window.updatePWA = function () {
     if (newWorker && !isUpdating) {
       isUpdating = true;
-      const banner = document.getElementById('update-banner');
-      if (banner) banner.style.display = 'none';
+      DOM.updateBanner.style.display = 'none';
       newWorker.postMessage({ action: 'skipWaiting' });
     }
-  }
+  };
 
   /* ---------- INIT ---------- */
-  loadVersion();
   applyTheme();
   loadContent();
 </script>

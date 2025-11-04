@@ -1,4 +1,4 @@
-const CACHE_NAME = 'apartment-guide-v3';
+const CACHE_NAME = 'apartment-guide-v4';
 const urlsToCache = [
   '/',
   '/index.html',
